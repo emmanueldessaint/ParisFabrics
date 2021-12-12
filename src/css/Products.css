@@ -312,9 +312,6 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    /* margin-right:40px;
-    margin-left:40px; */
-    /* max-width:1800px; */
 }
 .pageClassName{
     display:flex;

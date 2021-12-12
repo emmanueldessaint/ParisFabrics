@@ -5,14 +5,8 @@ import Rating from '@mui/material/Rating';
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import Container from '@material-ui/core/Container';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
-import {
-
-    useRecoilState,
- 
-} from 'recoil';
-import {
-    Link
-} from "react-router-dom";
+import {useRecoilState} from 'recoil';
+import {Link} from "react-router-dom";
 import logo from "../assets/img/sewing3.jpg";
 import reward from "../assets/img/reward2.png";
 import earth from "../assets/img/earth1.png";
@@ -146,7 +140,7 @@ export default function Home() {
                         >
                             {bestSellers.map(item => (
                                 <div className="cardProductCarousel lightShadowCard2" key={item.id}>
-                                    <Link to={`/${item.name} `} >
+                                    <Link to={`/${item.name} `} className="textDecorationNone">
                                         <img className="imageProductCarousel" src={window.location.origin + `/images/${item.images[0].url}`} alt="product bestsellers"/>
                                         <div className="hideProduct">
                                             <div className="elementAppear font5 letterSpacing1">

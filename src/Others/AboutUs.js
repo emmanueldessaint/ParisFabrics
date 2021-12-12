@@ -9,7 +9,7 @@ export default function AboutUs() {
         <div className="pt-13">
             <Grid container justifyContent="center" className="menuQuality">
                 <Grid item container xs={12} md={10} spacing={2}>
-                    <Grid xs={12}>
+                    <Grid xs={12} item>
                         <h2 className="centerText grey9 font9">RETROUVEZ TOUTE L’HISTOIRE D’AIMÉE DE MARS</h2>
                         <h3 className="centerText grey9 font9 mb-8">Une créatrice, un savoir-faire naturel, une éthique…</h3>
                     </Grid>

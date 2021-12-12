@@ -47,7 +47,6 @@ export default function Cart() {
       setPrice(myPrice);
       setLocalStorageLength(ourCart.length);
     }
-    console.log(ourCart)
     setIsLoaded(true);
     // scroll(0, 0);
   }, [])
@@ -101,12 +100,12 @@ export default function Cart() {
       <Container>
         <Grid className="pt-12" container justifyContent="center">
           <Grid item xs={12} sm={11} md={11} >
-            <h2 className="flexCenter letterSpacing1 font5">My cart</h2>
+            {/* <div className="flexCenter letterSpacing1 font5 grey7 mb-4 mt-2 size4">Here is your cart ...</div> */}
 
             {localStorageLength === 0 &&
               <div>
                 <div className="textAlignCenter font2">Your cart is empty</div>
-                <Link to="/catalog" className=" flexCenter mt-3">
+                <Link to="/catalog" className=" flexCenter mt-3 textDecorationNone">
                   <ColorButton variant="contained" style={{ fontFamily: 'sans-serif', letterSpacing: '2px', fontWeight: '300', fontSize: '0.8em' }}  >
                     Back to shopping
                   </ColorButton>
@@ -116,10 +115,9 @@ export default function Cart() {
             }
 
             {localStorageLength > 0 &&
-              <span className="flexCenter numberItemsCart">
-                {localStorageLength}
-                {localStorageLength < 2 && <span className="itemOrItems font5">item</span>}
-                {localStorageLength > 1 && <span className="itemOrItems font5"> items</span>}
+              <span className="flexCenter numberItemsCart mt-7 mb-3">
+                {localStorageLength < 2 && <div className="itemOrItems font5 grey5 size4 bold200"> Your cart contains {localStorageLength} product</div>}
+                {localStorageLength > 1 && <div className="itemOrItems font8 grey5 size4 bold200"> Your cart contains {localStorageLength} products</div>}
               </span>
             }
             <Grid container className="pt-5 pb-10" spacing={2}>
@@ -132,18 +130,18 @@ export default function Cart() {
                     >
                       <Link to={`/${product.name} `} className="bgWhite" ><img className="imgLineCart" src={window.location.origin + `/images/${product.image}`} alt="img product sewing"/></Link>
                       <div className="flexBetween bgWhite productDetailsCart">
-                        <div className="quantityNameCart font10 letterSpacing2 size3 opacity9 ml-5">
-                          <Link to={`/${product.name} `} >{product.name}</Link>
-                          <button className=" cursorPointer bgWhite" onClick={() => removeProduct(product)}><ClearIcon className="fontTrash" /></button>
+                        <div className="quantityNameCart font10 letterSpacing2 size3 opacity9 ml-5 flexColumn">
+                          <Link to={`/${product.name} `} className="textDecorationNone grey9 ">{product.name}</Link>
+                          <button className=" cursorPointer bgWhite borderNone underlined size07 mt-3 width50" onClick={() => removeProduct(product)}>remove</button>
                         </div>
 
                         <div className="widthQuantityPrice">
                           <div className="letterSpacing1 font5 bold600 grey8 mt-2">${(product.price/100).toFixed(2)} each</div>
                           <div className="quantityProductCart flex mb-2 mt-8">
-                            <ColorButton style={{ minWidth: '25px', maxWidth: '25px', minHeight: '25px', maxHeight: '25px' }} variant="contained" onClick={() => addQuantityInCart(product)} >+</ColorButton >
+                            <ColorButton style={{minWidth: '25px', maxWidth: '25px', minHeight: '23px', maxHeight: '23px' }} variant="contained" onClick={() => addQuantityInCart(product)} >+</ColorButton >
                             <div className="centerText productQuantityCart bgWhite">{product.quantity}</div>
-                            {product.quantity > 1 && <ColorButton style={{ minWidth: '25px', maxWidth: '25px', minHeight: '25px', maxHeight: '25px' }} variant="contained" onClick={() => substractQuantityInCart(product)} >-</ColorButton >}
-                            {product.quantity === 1 && <ColorButton style={{ minWidth: '25px', maxWidth: '25px', minHeight: '25px', maxHeight: '25px' }} variant="contained"  >-</ColorButton >}
+                            {product.quantity > 1 && <ColorButton style={{ minWidth: '25px', maxWidth: '25px', minHeight: '23px', maxHeight: '23px' }} variant="contained" onClick={() => substractQuantityInCart(product)} >-</ColorButton >}
+                            {product.quantity === 1 && <ColorButton style={{ minWidth: '25px', maxWidth: '25px', minHeight: '23px', maxHeight: '23px' }} variant="contained"  >-</ColorButton >}
                           </div>
                         </div>
                         <div>
@@ -163,14 +161,14 @@ export default function Cart() {
                     >
                       <div className="bgWhite">
                         <Link to={`/${product.name} `}><img className="imageProductMobileCart cursorPointer" src={window.location.origin + `/images/${product.image}`} alt="img article sewing"/></Link>
-                        <Link to={`/${product.name} `} className="verticalAlign font10 letterSpacing2 size3 opacity9 mt-3">{product.name}</Link>
+                        <Link to={`/${product.name} `} className="verticalAlign font10 letterSpacing2 size3 opacity9 mt-3 textDecorationNone grey7">{product.name}</Link>
                         <div className="flexBetween mt-6">
-                          <Link to={`/${product.name} `} className="ml-5">${(Number(product.price/100) * Number(product.quantity)).toFixed(2)}</Link>
+                          <Link to={`/${product.name} `} className="ml-5 textDecorationNone">${(Number(product.price/100) * Number(product.quantity)).toFixed(2)}</Link>
                           <div className="flex mr-5">
-                            <ColorButton style={{ minWidth: '25px', maxWidth: '25px', minHeight: '25px', maxHeight: '25px' }} variant="contained" onClick={() => addQuantityInCart(product)} >+</ColorButton >
+                            <ColorButton style={{ minWidth: '35px', maxWidth: '35px', minHeight: '25px', maxHeight: '25px' }} variant="contained" onClick={() => addQuantityInCart(product)} >+</ColorButton >
                             <div className="centerText productQuantityCart bgWhite ">{product.quantity}</div>
-                            {product.quantity > 1 && <ColorButton style={{ minWidth: '25px', maxWidth: '25px', minHeight: '25px', maxHeight: '25px' }} variant="contained" onClick={() => substractQuantityInCart(product)} >-</ColorButton >}
-                            {product.quantity === 1 && <ColorButton style={{ minWidth: '25px', maxWidth: '25px', minHeight: '25px', maxHeight: '25px' }} variant="contained"  >-</ColorButton >}
+                            {product.quantity > 1 && <ColorButton style={{ minWidth: '35px', maxWidth: '35px', minHeight: '25px', maxHeight: '25px' }} variant="contained" onClick={() => substractQuantityInCart(product)} >-</ColorButton >}
+                            {product.quantity === 1 && <ColorButton style={{ minWidth: '35px', maxWidth: '35px', minHeight: '25px', maxHeight: '25px' }} variant="contained"  >-</ColorButton >}
                           </div>
                         </div>
                         <div className="flexBetween mt-5 mb-3">
@@ -183,7 +181,7 @@ export default function Cart() {
                 </div>
                 {localStorageLength > 0 &&
                   <div className="flex mb-1">
-                    <Link to="/catalog" className="mr-2">
+                    <Link to="/catalog" className="mr-2 textDecorationNone">
                       <ColorButton variant="contained" style={{ fontFamily: 'sans-serif', letterSpacing: '2px', fontWeight: '300', fontSize: '0.8em' }}  >
                         Back to shopping
                       </ColorButton>

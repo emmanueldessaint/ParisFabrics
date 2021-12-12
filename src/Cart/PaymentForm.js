@@ -7,21 +7,46 @@ import Button from '@material-ui/core/Button';
 import '../css/Cart.css';
 import { shippingFees } from '../Shared/globalState'
 import { useRecoilState } from 'recoil';
-import { CardElement, useStripe, useElements} from "@stripe/react-stripe-js";
+import { CardElement, useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from "@stripe/react-stripe-js";
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
 
 const CustomButton = withStyles((theme) => ({
   root: {
-    color: '#020202',
-    backgroundColor: '#B7C1DA',
+    color: 'white',
+    backgroundColor: '#32477a',
     borderRadius: 3,
     opacity: 0.9,
     height: '45px',
     width: '100%',
+    border: '1px solid black',
+    letterSpacing: 1,
+    wordSpacing: 3,
     '&:hover': {
-      backgroundColor: '#ADB4D0',
+      opacity: 1,
+      backgroundColor: '#32477a',
+      color: 'white',
+      border: '1px solid black',
+    },
+  },
+}))(Button);
+
+const ButtonBillingDetails = withStyles((theme) => ({
+  root: {
+    color: 'white',
+    backgroundColor: '#32477a',
+    borderRadius: 3,
+    opacity: 0.9,
+    width: '100%',
+    border: '1px solid black',
+    letterSpacing: 1,
+    wordSpacing: 3,
+    '&:hover': {
+      opacity: 1,
+      backgroundColor: '#32477a',
+      color: 'white',
+      border: '1px solid black',
     },
   },
 }))(Button);
@@ -40,10 +65,11 @@ export default function PaymentForm() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [price, setPrice] = useState(0);
   const [shippingFeesVar, setShippingFeesVar] = useRecoilState(shippingFees);
-  const [payByCard, setPayByCard] = useState(false);
+  const [billingsDetails, setBillingsDetails] = useState(false);
+  const [cardInformation, setCardInformation] = useState(false);
 
   const stripe = useStripe();
-  
+
   const elements = useElements();
 
   var localLength = localStorage.length
@@ -108,7 +134,7 @@ export default function PaymentForm() {
     if (!error) {
       try {
         const { id } = paymentMethod
-        const response = await axios.post(process.env.MIX_REACT_APP_API + "/api/charge", {
+        const response = await axios.post("https://parisfabrics.com/api/charge", {
           amount: price * 100,
           id,
           paymentIntentId: paymentIntentId,
@@ -155,7 +181,7 @@ export default function PaymentForm() {
 
   // Paypal payment code 
   const createOrder = async (data, actions) => {
-    return await axios.post(process.env.MIX_REACT_APP_API + "/api/createOrder", {
+    return await axios.post("https://parisfabrics.com/api/createOrder", {
       amount: price * 100,
       firstName: firstName,
       lastName: lastName,
@@ -178,7 +204,7 @@ export default function PaymentForm() {
   }
 
   const onApprove = async (data, actions) => {
-    return await axios.post(process.env.MIX_REACT_APP_API + "/api/captureOrder", {
+    return await axios.post("https://parisfabrics.com/api/captureOrder", {
       orderID: data.orderID
     })
       .then((res) => {
@@ -189,19 +215,19 @@ export default function PaymentForm() {
       })
   }
 
-  const buttonPayment = () => {
-    setPayByCard(true);
+  const GoToPayment = () => {
+    setBillingsDetails(false);
+    setCardInformation(true);
   }
 
   return (
     <Container>
       <Grid container justifyContent="center">
         <Grid container spacing={5} item xs={12} sm={12} md={12} lg={12}>
-
-          {payByCard === false &&
+          {billingsDetails === false && cardInformation === false &&
             <Grid item xs={12} md={8} >
               <Grid item xs={12} className="height70">
-                <h2 className="centerText mb-12 grey8">Choose your payment method</h2>
+                <h2 className="centerText mb-12 grey6">Choose your payment method</h2>
               </Grid>
               <Grid container item xs={12}>
                 <Grid item xs={12} sm={5} container className="heightPaypalCreditCardDiv">
@@ -219,17 +245,17 @@ export default function PaymentForm() {
                   <div className="greyLinePayment"></div>
                 </Grid>
                 <Grid item xs={12} sm={5} container className="verticalAlign">
-                  <CustomButton variant="contained" onClick={buttonPayment}>Pay by credit card</CustomButton>
+                  <CustomButton variant="contained" onClick={() => setBillingsDetails(true)}>Pay by credit card</CustomButton>
                 </Grid>
               </Grid>
             </Grid>
           }
 
-          {payByCard === true &&
+          {billingsDetails === true &&
             <Grid item xs={12} md={8}>
               <Grid spacing={2} container>
                 <Grid item xs={12} >
-                  <h2 className=" centerText ">Billing details</h2>
+                  <h2 className=" centerText grey6">Billing details</h2>
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField
@@ -321,17 +347,38 @@ export default function PaymentForm() {
                 <Grid item xs={12} >
                   <div className="">
                     {/* <CardElement options={cardElementOptions} /> */}
-                    {/* <div className="numbersCard"><CardNumberElement/></div>
-                    <CardExpiryElement/>
-                    <CardCvcElement /> */}   
+
                   </div>
+                </Grid>
+                <Grid xs={12} item>
+                    <ButtonBillingDetails variant='contained' onClick={GoToPayment}>Go to payment</ButtonBillingDetails>
                 </Grid>
               </Grid>
             </Grid>
           }
+
+          {cardInformation === true &&
+            <Grid item xs={12} md={8}>
+              <Grid spacing={2} container>
+                <Grid item xs={12} >
+                  <h2 className=" centerText grey6">Billing details</h2>
+                </Grid>
+                <div className="numbersCard"><CardNumberElement /></div>
+                <CardExpiryElement />
+                <CardCvcElement />
+                <Grid item xs={12} >
+                  <ButtonBillingDetails fullWidth variant='contained' onClick={GoToPayment}>Go to payment</ButtonBillingDetails>
+                </Grid>
+              </Grid>
+            </Grid>
+
+
+
+
+          }
           <Grid container item xs={12} md={4}>
             <Grid item xs={12} >
-              <h2 className=" centerText grey8">Your order</h2>
+              <h2 className=" centerText grey6">Your order</h2>
 
               <div className=" bgWhite lightShadowCard2 font1 bold200  pl-1 pr-1 size1">
                 <div className="flexBetween ">
@@ -362,14 +409,6 @@ export default function PaymentForm() {
                   <div className="alignRight font3">${(Number(price / 100) + Number(shippingFeesVar)).toFixed(2)}</div>
                 </div>
               </div>
-              <Button
-                fullWidth
-                variant="contained"
-                margin="normal"
-                onClick={handlePaymentSubmit}
-              >
-                {isProcessing ? "Processing..." : `Pay $${(price/100 + shippingFeesVar/100).toFixed(2)}`}
-              </Button>
             </Grid>
           </Grid>
         </Grid>

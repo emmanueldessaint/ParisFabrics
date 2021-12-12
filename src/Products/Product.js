@@ -456,8 +456,7 @@ export default function Product(props) {
                     </Grid>
                     <Grid item xs={12} sm={10} md={5}>
                         <div className="font10 size3 grey8 letterSpacing2 textShadow1">{product.name}</div>
-
-                        <div className="flexBetween mt-9">
+                        <div className="flexBetween mt-7">
                             <span className="priceProduct font2 letterSpacing2 ">${(product.price / 100).toFixed(2)}</span>
                             <span>
                                 <Rating
@@ -471,7 +470,7 @@ export default function Product(props) {
                             </span>
                             <span onClick={scrollToReviews} className="font5 underlined grey8 cursorPointer scrollSmooth">Read reviews ({product.reviews.length})</span>
                         </div>
-                        <div className="flexBetween mt-9">
+                        <div className="flexBetween mt-6">
                             <Grid container justifyContent="center" >
                                 <Grid item xs={11} sm={6}>
                                     <div className=" addSubstractCart flex">
@@ -1030,7 +1029,7 @@ export default function Product(props) {
                                 >
                                     {bestSellers.map(item => (
                                         <div className="cardProductCarousel lightShadowCard2" key={item.id}>
-                                            <Link onClick={changeProduct} to={`/${item.name} `} >
+                                            <Link onClick={changeProduct} to={`/${item.name} `} className="textDecorationNone">
                                                 <img className="imageProductCarousel" src={window.location.origin + `/images/${item.images[0].url}`} />
                                                 <div className="hideProduct">
                                                     <div className="elementAppear font5 letterSpacing1">

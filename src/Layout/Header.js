@@ -152,40 +152,40 @@ export default function Header(props) {
                   <Box sx={{ flexGrow: 1 }} >
                     <Grid container  >
                       <Grid item xs={3} className={classes.alignTitle} >
-                        <Link to="/" onClick={resetPage} className="item">
+                        <Link to="/" onClick={resetPage} className="item textDecorationNone">
                           <h2 className="titleHeader grey9 font8 size3">Paris<span className="ml-1"></span>Fabrics</h2>
                         </Link>
                         {/* <img src={logoParis} alt="parisFabricsLogo" className="logoParis height70" /> */}
                       </Grid>
                       <Grid xs={6} spacing={2} item container justifyContent="center" className="menuHeader">
                         <Grid item xs={3} >
-                          <Link id="demotext" to="/"  >
+                          <Link id="demotext" to="/"  className="textDecorationNone">
                             <span className="verticalAlign grey7 letterSpacing2 size8 mt-4 itemMenu font10" onClick={resetPage}>Home</span>
                           </Link>
                         </Grid>
                         <Grid item xs={3} >
-                          <Link to="/catalog"  >
+                          <Link to="/catalog" className="textDecorationNone" >
                             <span className="verticalAlign grey7 letterSpacing2 size8 mt-4 itemMenu font10" onClick={resetPage}>Catalog</span>
                           </Link>
                         </Grid>
                         <Grid item xs={3} >
-                          <Link to="/aboutus"  >
+                          <Link to="/aboutus" className="textDecorationNone" >
                             <span className="verticalAlign  grey7  letterSpacing2 size8 mt-4 itemMenu font10" onClick={resetPage}>About Us</span>
                           </Link>
                         </Grid>
                         <Grid item xs={3} >
-                          <Link to="/contact"  >
+                          <Link to="/contact" className="textDecorationNone" >
                             <span className="verticalAlign  grey7  letterSpacing2 size8 mt-4 itemMenu font10" onClick={resetPage}>Contact</span>
                           </Link>
                         </Grid>
                       </Grid>
                       <Grid className="alignRight" item xs={3}>
-                        <Link to="/cart" onClick={resetPage}  >
+                        <Link to="/cart" onClick={resetPage}  className="textDecorationNone">
                           <StyledBadge className="mr-4 cartHeader" badgeContent={numberInCart} color="primary">
                             <ShoppingCartIcon className='iconHeader cartHeader' />
                           </StyledBadge>
                         </Link>
-                        <Link className="mr-2" to="/Connect" onClick={resetPage}>
+                        <Link className="mr-2 textDecorationNone" to="/Connect" onClick={resetPage}>
                           <AccountCircleIcon className="iconHeader cartHeader" />
                         </Link>
                         <div className="mr-3 ml-5 mt-1">
@@ -234,7 +234,7 @@ export default function Header(props) {
             </div>
           </Grid>
           <Grid item xs={6}>
-            <Link to="/" onClick={resetPage}>
+            <Link to="/" onClick={resetPage} className="textDecorationNone">
               <h2 className="titleHeader grey9 font8 size3 flexCenter">Paris<span className="ml-1"></span>Fabrics</h2>
             </Link>
           </Grid>
@@ -248,16 +248,16 @@ export default function Header(props) {
           <Grid item xs={12}>
             {isOpen && menuMobileOpen &&
               <div className="grey7  letterSpacing2 font10 menuMobile">
-                <Link to="/" onClick={resetPage}><div className="cursorPointer menuMobileItem  size6  pl-2 pt-2 pb-2">Home</div></Link>
-                <Link to="/catalog" onClick={resetPage}><div className="cursorPointer menuMobileItem  size6 pl-2  pt-2 pb-2">Catalog</div></Link>
-                <Link to="/aboutus" onClick={resetPage}><div className="cursorPointer menuMobileItem  size6 pl-2 pt-2 pb-2">About Us</div></Link>
-                <Link to="/aboutus" onClick={resetPage}><div className="cursorPointer menuMobileItem  size6 pl-2  pt-2 pb-2">Contact</div></Link>
+                <Link to="/" onClick={resetPage} className="textDecorationNone"><div className="cursorPointer menuMobileItem  size6  pl-2 pt-2 pb-2 grey9">Home</div></Link>
+                <Link to="/catalog" onClick={resetPage} className="textDecorationNone"><div className="cursorPointer menuMobileItem  size6 pl-2  pt-2 pb-2 grey9">Catalog</div></Link>
+                <Link to="/aboutus" onClick={resetPage} className="textDecorationNone"><div className="cursorPointer menuMobileItem  size6 pl-2 pt-2 pb-2 grey9">About Us</div></Link>
+                <Link to="/aboutus" onClick={resetPage} className="textDecorationNone"><div className="cursorPointer menuMobileItem  size6 pl-2  pt-2 pb-2 grey9">Contact</div></Link>
 
 
                 <Grid container>
                   <Grid item sm={3} xs={4} className="verticalAlign">
-                    <Link  to="/Connect" onClick={resetPage}>
-                      <AccountCircleIcon className=" scale3" />
+                    <Link  to="/Connect" onClick={resetPage} >
+                      <AccountCircleIcon className=" scale3 grey9" />
                     </Link>
                   </Grid>
                   <Grid item s={6} xs={7}>

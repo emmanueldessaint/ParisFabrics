@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
-import Button from '@material-ui/core/Button';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-} from "react-router-dom";
+import {Link} from "react-router-dom";
 import '../App.css';
 import '../css/Products.css';
 import { numberOfPageProducts } from '../Shared/globalState'
@@ -21,12 +15,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import { itemsProduct, numberOfItemsInCart } from '../Shared/globalState'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Snackbar from '@material-ui/core/Snackbar';
-// import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
-import ReactPaginate from 'react-paginate';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+
 
 // function Alert(props) {
 //     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -159,7 +150,6 @@ export default function Products() {
     }
 
     useEffect(() => {
-        console.log("go filter useEffect")
         if (filter === '10') {
             let array = [...allItems]
             array.sort(comparePopularity);
@@ -189,25 +179,6 @@ export default function Products() {
     const [itemOffset, setItemOffset] = useState(0);
     const itemsPerPage = 12;
 
-    useEffect(() => {
-        if (isLoaded === true) {
-            // Fetch items from another resources.
-            const endOffset = itemOffset + itemsPerPage;
-            console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-            setCurrentItems(allItems.slice(itemOffset, endOffset));
-            setPageCount(Math.ceil(allItems.length / itemsPerPage));
-        }
-    }, [itemOffset, itemsPerPage, isLoaded]);
-
-    // Invoke when user click to request another page.
-    const handlePageClick = (event) => {
-        const newOffset = (event.selected * itemsPerPage) % allItems.length;
-        console.log(
-            `User requested page number ${event.selected}, which is offset ${newOffset}`
-        );
-        setItemOffset(newOffset);
-    };
-
     if (error) {
         return <div >Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -224,8 +195,8 @@ export default function Products() {
                                     key={item}
                                 >
                                     {item === actuelPage
-                                        ? <button className="boutonPaginationSelected  generalBackground" onClick={() => handleChangePage(item)}>{item}</button>
-                                        : <button className="boutonPagination generalBackground" onClick={() => handleChangePage(item)}>{item}</button>
+                                        ? <button className="boutonPaginationSelected  generalBackground borderNone" onClick={() => handleChangePage(item)}>{item}</button>
+                                        : <button className="boutonPagination generalBackground borderNone" onClick={() => handleChangePage(item)}>{item}</button>
                                     }
                                 </div>
                             ))}
@@ -252,7 +223,7 @@ export default function Products() {
                                     </Select>
                                 </FormControl>
                             </div>
-                            <div className="divMobile mr-4">
+                            <div className="divMobile mr-4 mt-3 mb-1">
                                 <FormControl size="small" className="widthFormControl">
                                     <InputLabel htmlFor="age-native-simple">Filter by</InputLabel>
                                     <Select
@@ -281,10 +252,10 @@ export default function Products() {
                             {itemsInCurrentPage.map((item, index) => (
 
                                 <div className="cardProduct lightShadowCard2 productComputer" key={index}>
-                                    <Link to={`/${item.name} `} >
+                                    <Link to={`/${item.name} `} className="textDecorationNone">
                                         <img className="imageProduct" src={window.location.origin + `/images/${item.images[0].url}`} />
                                         <div className="hideProduct">
-                                            <div className="elementAppear">
+                                            <div className="elementAppear grey7">
                                                 DISCOVER
                                             </div>
                                         </div>
@@ -300,6 +271,21 @@ export default function Products() {
                                                         size="small"
                                                         name="simple-controlled"
                                                         value={item.avg}
+                                                        emptyIcon={
+                                                            <StarBorderIcon fontSize="inherit" className="emptyStar" />
+                                                        }
+                                                    />
+                                                </div>
+                                            }
+                                            {item.reviews.length < 1 &&
+                                                <div className="flex productDetails mt-4 mr-3 pb-1 opacity8">
+                                                    <div className="grey6">(0)<span className="ml-1"></span></div>
+                                                    <Rating
+                                                        precision={0.5}
+                                                        readOnly
+                                                        size="small"
+                                                        name="simple-controlled"
+                                                        value={0}
                                                         emptyIcon={
                                                             <StarBorderIcon fontSize="inherit" className="emptyStar" />
                                                         }
@@ -329,10 +315,10 @@ export default function Products() {
                             >
                                 <div>
                                     <div className="flex productMobile productMobileCatalog mb-3 mt-3">
-                                        <Link to={`/${item.name} `} style={{ width: '40vw' }} ><img className="imageProductMobile cursorPointer" src={window.location.origin + `/images/${item.images[0].url}`} /></Link>
+                                        <Link to={`/${item.name} `} style={{ width: '40vw' }}><img className="imageProductMobile cursorPointer" src={window.location.origin + `/images/${item.images[0].url}`} /></Link>
                                         <div className="pl-2 width100">
-                                            <Link to={`/${item.name} `} ><div className="mt-1 font10 letterSpacing2 grey7 cursorPointer">{item.name}</div> </Link>
-                                            <Link to={`/${item.name} `} >
+                                            <Link to={`/${item.name} `} className="textDecorationNone"><div className="mt-1 font10 letterSpacing2 grey7 cursorPointer">{item.name}</div> </Link>
+                                            <Link to={`/${item.name} `} className="textDecorationNone">
                                                 {item.reviews.length > 0 &&
                                                     <div className="flex productDetails mt-1 opacity6 cursorPointer">
                                                         <Rating
@@ -348,13 +334,28 @@ export default function Products() {
                                                         <div className="ml-1">({item.reviews.length})<span className="ml-1"></span></div>
                                                     </div>
                                                 }
+                                                {item.reviews.length < 1 &&
+                                                    <div className="flex productDetails mt-1 opacity6 cursorPointer">
+                                                        <Rating
+                                                            precision={0.5}
+                                                            readOnly
+                                                            size="small"
+                                                            name="simple-controlled"
+                                                            value={0}
+                                                            emptyIcon={
+                                                                <StarBorderIcon fontSize="inherit" className="emptyStar" />
+                                                            }
+                                                        />
+                                                        <div className="ml-1 grey7">(0)<span className="ml-1"></span></div>
+                                                    </div>
+                                                }
                                             </Link>
                                             <div className="flexBetween ">
-                                                <Link to={`/${item.name} `} ><div className="mt-4 cursorPointer">${(item.price / 100).toFixed(2)}</div></Link>
+                                                <Link to={`/${item.name} `} className="textDecorationNone"><div className="mt-4 cursorPointer grey8" >${(item.price / 100).toFixed(2)}</div></Link>
                                                 <div className="flexEnd opacity8 cursorPointer" onClick={() => addToCart(item)}><AddShoppingCartIcon /></div>
                                                 <Snackbar open={open} autoHideDuration={1000} onClose={handleClose}>
-                                                    <div className="bgSuccess opacity9 bgBlue pl-5 pr-5 font2 p-1  bold200 textWhite borderRadius5 boxShadowButton" onClose={handleClose} severity="success">
-                                                        <span><CheckCircleOutlineIcon className="mb-1" /></span><span className="ml-3 size2 mt-3 font2">item added to cart !</span>
+                                                    <div className="bgSuccess opacity9 bgBlue pl-5 pr-5 font2 p-1  bold200 textWhite borderRadius5 boxShadowButton verticalAlign" onClose={handleClose} severity="success">
+                                                        <span><CheckCircleOutlineIcon className="mt-1" /></span><span className="ml-3 size2 font2">item added to cart !</span>
                                                     </div>
                                                 </Snackbar>
                                                 {/* <div className="bgSuccess opacity9 bgBlue pl-4 pr-4 font2 p-2 grey8 bold500 textWhite borderRadius3 boxShadowButton" onClose={handleClose} severity="success">
@@ -368,7 +369,6 @@ export default function Products() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="greyBarProductMobile"></div>
                             </Grid>
                         ))}
                     </Grid>
@@ -381,8 +381,8 @@ export default function Products() {
                                     key={item}
                                 >
                                     {item === actuelPage
-                                        ? <button className="boutonPaginationSelected  generalBackground" onClick={() => handleChangePage(item)}>{item}</button>
-                                        : <button className="boutonPagination generalBackground" onClick={() => handleChangePage(item)}>{item}</button>
+                                        ? <button className="boutonPaginationSelected  generalBackground borderNone" onClick={() => handleChangePage(item)}>{item}</button>
+                                        : <button className="boutonPagination generalBackground borderNone" onClick={() => handleChangePage(item)}>{item}</button>
                                     }
                                 </div>
                             ))}
