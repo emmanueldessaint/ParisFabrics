@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import '../App.css';
 import '../css/Products.css';
 import { useRecoilState } from 'recoil';
@@ -29,7 +29,7 @@ import TextField from '@material-ui/core/TextField';
 import ReactPaginate from 'react-paginate';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import ReactHtmlParser from 'react-html-parser'; 
+import ReactHtmlParser from 'react-html-parser';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -42,7 +42,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
-
 }));
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -52,8 +51,25 @@ const Item = styled(Paper)(({ theme }) => ({
     "margin": "20px",
     textAlign: 'center',
     color: theme.palette.text.secondary,
-
 }));
+
+const LinkButton = withStyles((theme) => ({
+    root: {
+        color: '#020202',
+        backgroundColor: '#dbb013',
+        borderRadius: 0,
+        opacity: 0.9,
+        wordSpacing: 3,
+        letterSpacing: 1,
+        fontWeight: 800,
+        '&:hover': {
+            opacity: 1,
+            backgroundColor: '#dbb013',
+        },
+    },
+}))(Button);
+
+
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -165,10 +181,6 @@ export default function Product(props) {
     const [noRating, setNoRating] = useState(false);
     const [filter, setFilter] = useState(0);
     const [open, setOpen] = useState(false);
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
 
     const handleClose = () => {
         setOpen(false);
@@ -295,6 +307,7 @@ export default function Product(props) {
 
     const handleReviews = () => {
         setWriteReviews(!writeReviews)
+        setOpen(true);
     }
 
     const submitReview = () => {
@@ -509,7 +522,7 @@ export default function Product(props) {
                             <div className="width90 greyLineProduct m-4"></div>
                         </div>
                         <div>
-                            <div>{ReactHtmlParser (product.description)}</div>
+                            <div>{ReactHtmlParser(product.description)}</div>
                         </div>
                     </Grid>
                     <Grid item xs={false} md={1}></Grid>
@@ -546,24 +559,63 @@ export default function Product(props) {
                             <Grid item sm={12} xs={12}>
                                 <div className="flexBetween mt-2 mb-4">
                                     <div>
-                                    {product.avg !== undefined ?
-                                        <div className="flex">
-                                            <div className="size11 bold600">{(Number(product.avg)).toFixed(2)}</div>
-                                            <div className="height50 ml-2">
-                                                <div className="">
-                                                    <Rating
-                                                        size="small"
-                                                        precision={0.5}
-                                                        readOnly
-                                                        className=""
-                                                        name="simple-controlled"
-                                                        value={product.avg}
-                                                    />
+                                        {product.avg !== undefined ?
+                                            <div className="flex">
+                                                <div className="size11 bold600">{(Number(product.avg)).toFixed(2)}</div>
+                                                <div className="height50 ml-2">
+                                                    <div className="">
+                                                        <Rating
+                                                            size="small"
+                                                            precision={0.5}
+                                                            readOnly
+                                                            className=""
+                                                            name="simple-controlled"
+                                                            value={product.avg}
+                                                        />
+                                                    </div>
+                                                    <div className="font2 size08 grey7">based on {product.reviews.length} {product.reviews.length > 1 ? <span>reviews</span> : <span>review</span>}</div>
                                                 </div>
-                                                <div className="font2 size08 grey7">based on {product.reviews.length} {product.reviews.length > 1 ? <span>reviews</span> : <span>review</span>}</div>
-                                            </div>
-                                        </div> : <Typography>Be the first to comment !</Typography>}
+                                            </div> : <Typography>Be the first to comment !</Typography>}
                                         <ReviewButton onClick={handleReviews} style={{ borderRadius: '3px', minWidth: '190px', marginTop: '20px', letterSpacing: '1px', wordSpacing: '3px', }}>write a review</ReviewButton>
+                                        <div>
+                                            <Dialog
+                                                open={open}
+                                                onClose={handleClose}
+                                                aria-labelledby="alert-dialog-title"
+                                                aria-describedby="alert-dialog-description"
+                                            >
+                                                <DialogTitle id="alert-dialog-title">{"You must be registered to write a review !"}</DialogTitle>
+                                                {/* <h3 className="centerText">You must be registered to let a review !</h3> */}
+                                                <DialogContent>
+                                                    <DialogContentText id="alert-dialog-description">
+                                                        <Grid container>
+                                                            <Grid item xs={12} sm={6} spacing={6}>
+                                                                <Box m={1}>
+                                                                    <Link to="/Connect" className="textDecorationNone">
+                                                                        <LinkButton fullWidth variant="contained">Connect</LinkButton>
+                                                                    </Link>
+                                                                </Box>
+                                                            </Grid>
+                                                            <Grid item xs={12} sm={6} spacing={6}>
+                                                                <Box m={1}>
+                                                                    <Link to="/Signup" className="textDecorationNone grey9">
+                                                                        <LinkButton fullWidth variant="contained">Register now</LinkButton>
+                                                                    </Link>
+                                                                </Box>
+                                                            </Grid>
+                                                        </Grid>
+                                                    </DialogContentText>
+                                                </DialogContent>
+                                                {/* <DialogActions>
+                                                    <Button onClick={handleClose} color="primary">
+                                                        Disagree
+                                                    </Button>
+                                                    <Button onClick={handleClose} color="primary" autoFocus>
+                                                        Agree
+                                                    </Button>
+                                                </DialogActions> */}
+                                            </Dialog>
+                                        </div>
                                         {/* <div>Notre examiner le lignes directires aide les clients à rédiger des avis honnetes</div> */}
                                     </div>
                                     <div className="">
@@ -636,33 +688,7 @@ export default function Product(props) {
                                 </div>
                             </Grid>
                         </Grid>
-                        {/* <div>
-                            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                                Open alert dialog
-                            </Button>
-                            <Dialog
-                                open={open}
-                                onClose={handleClose}
-                                aria-labelledby="alert-dialog-title"
-                                aria-describedby="alert-dialog-description"
-                            >
-                                <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
-                                <DialogContent>
-                                    <DialogContentText id="alert-dialog-description">
-                                        Let Google help apps determine location. This means sending anonymous location data to
-                                        Google, even when no apps are running.
-                                    </DialogContentText>
-                                </DialogContent>
-                                <DialogActions>
-                                    <Button onClick={handleClose} color="primary">
-                                        Disagree
-                                    </Button>
-                                    <Button onClick={handleClose} color="primary" autoFocus>
-                                        Agree
-                                    </Button>
-                                </DialogActions>
-                            </Dialog>
-                        </div> */}
+
                         {writeReviews === true &&
                             <div className="mb-3">
                                 <div className="flexBetween">

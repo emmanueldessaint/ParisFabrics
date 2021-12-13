@@ -13,11 +13,12 @@ import ClearIcon from '@material-ui/icons/Clear';
 const ColorButton = withStyles((theme) => ({
   root: {
     color: '#020202',
-    backgroundColor: '#B7C1DA',
+    backgroundColor: '#cbd0de',
     borderRadius: 0,
     opacity: 0.9,
     '&:hover': {
-      backgroundColor: '#ADB4D0',
+      backgroundColor: '#cbd0de',
+      opacity: 1
     },
   },
 }))(Button);
@@ -31,10 +32,6 @@ export default function Cart() {
   const [localStorageLength, setLocalStorageLength] = useState(0);
 
   const [price, setPrice] = useState(0);
-  // const globalPrice = selector({
-  //   key: 'globalPrice',
-  //   get: ({get}) => 
-  // })
 
   useEffect(() => {
     var myPrice = 0;
@@ -182,11 +179,11 @@ export default function Cart() {
                 {localStorageLength > 0 &&
                   <div className="flex mb-1">
                     <Link to="/catalog" className="mr-2 textDecorationNone">
-                      <ColorButton variant="contained" style={{ fontFamily: 'sans-serif', letterSpacing: '2px', fontWeight: '300', fontSize: '0.8em' }}  >
+                      <ColorButton variant="contained" style={{ fontFamily: 'sans-serif', letterSpacing: '2px', fontWeight: '300', fontSize: '0.8em', backgroundColor: '#5ea6b4', borderRadius: '3px',}}  >
                         Back to shopping
                       </ColorButton>
                     </Link>
-                    <ColorButton variant="contained" style={{ fontFamily: 'sans-serif', letterSpacing: '2px', fontWeight: '300', fontSize: '0.8em', marginLeft: '10px', }} onClick={clearCart} >
+                    <ColorButton variant="contained" style={{ fontFamily: 'sans-serif', letterSpacing: '2px', fontWeight: '300', fontSize: '0.8em', marginLeft: '10px', backgroundColor: 'rgb(250 132 0 / 83%)', borderRadius: '3px', }} onClick={clearCart} >
                       Clear cart
                     </ColorButton>
                   </div>
@@ -223,12 +220,12 @@ export default function Cart() {
                       <div className="alignRight font3">${(Number(price/100) + Number(shippingFeesVar)).toFixed(2)}</div>
                     </div>
                     <div className="mt-4 ">
-                      <Link to="/checkout"  >
+                      <Link to="/checkout" className="textDecorationNone" >
                         <ColorButton
                           fullWidth
                           variant="contained"
                           margin="normal"
-                          style={{ fontFamily: 'sans-serif', letterSpacing: '2px', fontWeight: '300', fontSize: '0.8em', backgroundColor: '#de7f148f',}}
+                          style={{ borderRadius:'30px',fontFamily: 'sans-serif', letterSpacing: '2px', fontWeight: '300', fontSize: '0.8em', backgroundColor: 'rgb(250 132 0 / 83%)',}}
                         >
                           Go to checkout
                         </ColorButton>

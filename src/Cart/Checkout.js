@@ -22,8 +22,6 @@ export default function Checkout() {
         <div className="pt-13">
             <Elements stripe={stripePromise}>
                 <PaymentForm />
-
-
             </Elements>
         </div>
     );

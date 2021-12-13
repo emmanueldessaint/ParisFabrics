@@ -18,6 +18,7 @@ import Faq from './Others/Faq';
 import TermsOfService from './Others/TermsOfService';
 import ShippingPolicy from './Others/ShippingPolicy';
 import Contact from './Others/Contact';
+import ForgetPassword from './Connect/ForgetPassword'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 export default function App() {
@@ -38,6 +39,10 @@ export default function App() {
 
             <Route path="/signup">
               <Signup />
+            </Route>
+
+            <Route path="/forgotPassword">
+              <ForgetPassword />
             </Route>
 
             <Route path="/cart">

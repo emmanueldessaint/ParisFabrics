@@ -97,12 +97,12 @@ export default function Connect(props) {
                                     fullWidth
                                     margin="normal">Connect</CustomButton>
                                 <div className={classes.greyLine}></div>
-                                <h5 className={classes.forgotPassword}>Forgot your password ?</h5>
+                                <h5 className={classes.forgotPassword}>Forgot your <Link to="/ForgotPassword" className="grey9 ml-1"> password ?</Link></h5>
                             </Box>
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <h3>New customer ?</h3>
-                            <Link to="/signup" className="item">
+                            <Link to="/signup" className="item textDecorationNone">
                                 <CustomButtonCreate
                                     className={classes.button}
                                     fullWidth

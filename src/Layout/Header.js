@@ -20,7 +20,7 @@ import '../css/Header.css';
 import { numberOfItemsInCart, itemsProduct, changingPage, mobileMenuOn, currentPageProduct } from '../Shared/globalState';
 import Hamburger from 'hamburger-react';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import {useRecoilState} from 'recoil';
+import { useRecoilState } from 'recoil';
 
 
 
@@ -88,7 +88,7 @@ export default function Header(props) {
   useEffect(() => {
     var ourCart = JSON.parse(localStorage.getItem("cart_Paris_Fabrics"));
     var quantityInCart = 0;
-    if (ourCart === null) {  
+    if (ourCart === null) {
     } else {
       for (var i = 0; i < ourCart.length; i++) {
         quantityInCart += ourCart[i].quantity;
@@ -159,7 +159,7 @@ export default function Header(props) {
                       </Grid>
                       <Grid xs={6} spacing={2} item container justifyContent="center" className="menuHeader">
                         <Grid item xs={3} >
-                          <Link id="demotext" to="/"  className="textDecorationNone">
+                          <Link id="demotext" to="/" className="textDecorationNone">
                             <span className="verticalAlign grey7 letterSpacing2 size8 mt-4 itemMenu font10" onClick={resetPage}>Home</span>
                           </Link>
                         </Grid>
@@ -180,7 +180,7 @@ export default function Header(props) {
                         </Grid>
                       </Grid>
                       <Grid className="alignRight" item xs={3}>
-                        <Link to="/cart" onClick={resetPage}  className="textDecorationNone">
+                        <Link to="/cart" onClick={resetPage} className="textDecorationNone">
                           <StyledBadge className="mr-4 cartHeader" badgeContent={numberInCart} color="primary">
                             <ShoppingCartIcon className='iconHeader cartHeader' />
                           </StyledBadge>
@@ -252,11 +252,9 @@ export default function Header(props) {
                 <Link to="/catalog" onClick={resetPage} className="textDecorationNone"><div className="cursorPointer menuMobileItem  size6 pl-2  pt-2 pb-2 grey9">Catalog</div></Link>
                 <Link to="/aboutus" onClick={resetPage} className="textDecorationNone"><div className="cursorPointer menuMobileItem  size6 pl-2 pt-2 pb-2 grey9">About Us</div></Link>
                 <Link to="/aboutus" onClick={resetPage} className="textDecorationNone"><div className="cursorPointer menuMobileItem  size6 pl-2  pt-2 pb-2 grey9">Contact</div></Link>
-
-
                 <Grid container>
                   <Grid item sm={3} xs={4} className="verticalAlign">
-                    <Link  to="/Connect" onClick={resetPage} >
+                    <Link to="/Connect" onClick={resetPage} >
                       <AccountCircleIcon className=" scale3 grey9" />
                     </Link>
                   </Grid>

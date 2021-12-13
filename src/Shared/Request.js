@@ -1,13 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import * as React from 'react';
 import { itemsProduct, itemsBestSellers, averageNoteArticles, allItemsInCart } from './globalState'
-import {
-    RecoilRoot,
-    atom,
-    selector,
-    useRecoilState,
-    useRecoilValue,
-} from 'recoil';
+import {useRecoilState} from 'recoil';
 
 export default function Request() {
 
