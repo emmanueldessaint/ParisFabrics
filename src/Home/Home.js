@@ -17,6 +17,7 @@ import '../css/Home.css';
 import { itemsProduct, itemsBestSellers, averageNoteArticles } from '../Shared/globalState';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import trackPackage from "../assets/img/trackPackage1.png";
 
 export default function Home() {
 
@@ -25,7 +26,6 @@ export default function Home() {
     const [userReviews, setUserReviews] = useState([]);
     const [allItems] = useRecoilState(itemsProduct);
     const [averageNotes] = useRecoilState(averageNoteArticles);
-
 
     useEffect(() => {
         fetch("https://parisfabrics.com/api/reviews")
@@ -49,6 +49,8 @@ export default function Home() {
         }
     }, [allItems])
 
+    window.scroll(0, 0);
+
     const bestSellersCarousel = {
         large: {
             breakpoint: { max: 4000, min: 1200 },
@@ -68,16 +70,12 @@ export default function Home() {
         }
     };
     const reviewsCarousel = {
-        large: {
-            breakpoint: { max: 4000, min: 1200 },
-            items: 4
-        },
         desktop: {
-            breakpoint: { max: 1200, min: 960 },
+            breakpoint: { max: 4000, min: 1160 },
             items: 3
         },
         tablet: {
-            breakpoint: { max: 960, min: 600 },
+            breakpoint: { max: 1160, min: 600 },
             items: 2
         },
         mobile: {
@@ -97,7 +95,7 @@ export default function Home() {
                         <Grid item xs={12} sm={4}>
                             <div className="mt-6 ">
 
-                                <span className="flexCenter"><img src={earth} alt="earth_icon" className="smallIcons " /></span>
+                                <span className="flexCenter minHeight40"><img src={earth} alt="earth_icon" className="smallIcons " /></span>
                                 <span className="flexCenter mt-2 titleHomeArguments grey7 font6 size1 opacity9 letterSpacing2">RESPECT FOR THE LAND</span>
                                 <div className="blueBar"></div>
                                 <span className="flexCenter mt-1 grey7 font2 opacity9 letterSpacing1">Environment and traditions</span>
@@ -107,7 +105,7 @@ export default function Home() {
                         <Grid item xs={12} sm={4} className="flexBetween">
                             <div className="orangeBar"></div>
                             <div className="mt-6 ">
-                                <span className="flexCenter"><LocalShippingIcon /></span>
+                            <span className="flexCenter minHeight40"><img src={trackPackage} alt="sewing_icon" className="smallIconsTrack backgroundIcons" /></span>
                                 <span className="flexCenter mt-2 titleHomeArguments grey7 font6 size1 opacity9 letterSpacing2">TRACKING DELIVERY</span>
                                 <div className="blueBar"></div>
                                 <span className="flexCenter mt-1 grey7 font2 opacity9 letterSpacing1">All around the world</span>
@@ -117,7 +115,7 @@ export default function Home() {
 
                         <Grid item xs={12} sm={4}>
                             <div className="mt-6">
-                                <span className="flexCenter"><img src={sewing} alt="sewing_icon" className="smallIcons backgroundIcons" /></span>
+                                <span className="flexCenter minHeight40"><img src={sewing} alt="sewing_icon" className="smallIcons backgroundIcons" /></span>
                                 <span className="flexCenter mt-2 titleHomeArguments grey7 font6 size1 opacity9 letterSpacing1">A REAL KNOW-HOW</span>
                                 <div className="blueBar"></div>
                                 <span className="flexCenter mt-1 grey7 font2 opacity9 letterSpacing1">The highest quality</span>
@@ -200,7 +198,7 @@ export default function Home() {
                             >
                                 {userReviews.map((review, index) => (
                                     <div
-                                        className="m-2"
+                                        className="m-2 bgWhite lightShadowCard3 pt-2 cursorPointer"
                                         key={index}
                                     >
 
@@ -210,7 +208,7 @@ export default function Home() {
                                             precision={0.5}
                                             readOnly
                                             size="small"
-                                            className="stars ml-2 opacity8"
+                                            className="stars ml-2 opacity8 "
                                             name="simple-controlled"
                                             value={review.note}
                                             emptyIcon={
@@ -220,9 +218,9 @@ export default function Home() {
                                         {/* <div className="ml-2 linkItemComment minHeight30">{item.product.name}</div> */}
                                         <div className="lightShadowCard3">
                                             {review.description.length !== null &&
-                                                <div className="mt-2 pl-2 pt-2 grey6 bold100 font2 minHeight90">{review.description.length < 60 ? review.description : review.description.substring(0, 70) + " . . ."}</div>
+                                                <div className="mt-2 pl-2 pt-2 grey6 bold100 font2 minHeight90">{review.description.length < 120 ? review.description : review.description.substring(0, 120) + " (...)"}</div>
                                             }
-                                            <div className="mt-5 pl-2 pb-2 font2 bold500 grey9">{review.title}</div>
+                                            <div className="mt-5 pl-2 pb-2 font2 bold500 grey9 lightShadowCard3 pt-2">{review.title}</div>
                                         </div>
                                         {/* </Link> */}
                                         {/* } */}

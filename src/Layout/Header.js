@@ -25,14 +25,9 @@ import { useRecoilState } from 'recoil';
 
 
 const useStyles = makeStyles(theme => ({
-
-
-
   alignTitle: {
     "display": "flex",
     "justify-content": "center",
-
-
   }
 }));
 
@@ -170,7 +165,7 @@ export default function Header(props) {
                         </Grid>
                         <Grid item xs={3} >
                           <Link to="/aboutus" className="textDecorationNone" >
-                            <span className="verticalAlign  grey7  letterSpacing2 size8 mt-4 itemMenu font10" onClick={resetPage}>About Us</span>
+                            <div className="textCenter  grey7  letterSpacing2 size8 mt-4 itemMenu font10" onClick={resetPage}>About Us</div>
                           </Link>
                         </Grid>
                         <Grid item xs={3} >

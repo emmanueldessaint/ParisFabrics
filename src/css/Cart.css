@@ -127,5 +127,16 @@
     border:1px solid rgb(179, 179, 179);
     padding-left:10px;
     padding-top:10px;
-    
+}
+.radiusCartPc{
+    border-top-right-radius:20px;
+    border-bottom-right-radius:20px;
+}
+.ProductSubtotal{
+    border-top-right-radius:20px;
+    border-top-left-radius:20px;
+}
+.totalAndShipping{
+    border-bottom-right-radius:20px;
+    border-bottom-left-radius:20px;
 }

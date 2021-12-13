@@ -6,7 +6,7 @@ import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import '../css/Cart.css';
 import { shippingFees } from '../Shared/globalState'
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { CardElement, useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from "@stripe/react-stripe-js";
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
@@ -53,26 +53,31 @@ const ButtonBillingDetails = withStyles((theme) => ({
 
 export default function PaymentForm() {
   const [firstName, setFirstName] = useState('');
+  const [errorInFirstName, setErrorInFirstName] = useState(false);
   const [lastName, setLastName] = useState('');
+  const [errorInLastName, setErrorInLastName] = useState(false);
   const [email, setEmail] = useState('');
+  const [errorInEmail, setErrorInEmail] = useState(false);
   const [address, setAddress] = useState('');
+  const [errorInAddress, setErrorInAddress] = useState(false);
   const [city, setCity] = useState('');
+  const [errorInCity, setErrorInCity] = useState(false);
   const [zipCode, setZipCode] = useState('');
+  const [errorInZipCode, setErrorInZipCode] = useState(false);
   const [country, setCountry] = useState('');
+  const [errorInCountry, setErrorInCountry] = useState(false);
   const [additionalInformation, setAdditionalInformation] = useState('');
   const [itemsInCart, setItemsInCart] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [price, setPrice] = useState(0);
-  const [shippingFeesVar, setShippingFeesVar] = useRecoilState(shippingFees);
+  const shippingFeesVar = useRecoilValue(shippingFees);
   const [billingsDetails, setBillingsDetails] = useState(false);
   const [cardInformation, setCardInformation] = useState(false);
 
   const stripe = useStripe();
 
   const elements = useElements();
-
-  var localLength = localStorage.length
 
   useEffect(() => {
     var myPrice = 0;
@@ -86,7 +91,7 @@ export default function PaymentForm() {
       // setLocalStorageLength(ourCart.length);
     }
     setIsLoaded(true);
-    // scroll(0, 0);
+    window.scroll(0, 0);
   }, [])
 
   // Stripe payment code 
@@ -216,6 +221,53 @@ export default function PaymentForm() {
   }
 
   const GoToPayment = () => {
+    // let res = /^[a-zA-Z]+$/.test('sfjd');
+    var error = false
+    if (firstName.length < 1) {
+      setErrorInFirstName(true);
+      error = true;
+    } else {
+      setErrorInFirstName(false);
+    }
+    if (lastName.length < 1) {
+      setErrorInLastName(true);
+      error = true;
+    } else {
+      setErrorInLastName(false);
+    }
+    if (email.length < 4) {
+      setErrorInEmail(true);
+      error = true;
+    } else {
+      setErrorInEmail(false);
+    }
+    if (country.length < 3) {
+      setErrorInCountry(true);
+      error = true;
+    } else {
+      setErrorInCountry(false);
+    }
+    if (address.length < 4) {
+      setErrorInAddress(true);
+      error = true;
+    } else {
+      setErrorInAddress(false);
+    }
+    if (city.length < 1) {
+      setErrorInCity(true);
+      error = true;
+    } else {
+      setErrorInCity(false);
+    }
+    if (zipCode.length < 1) {
+      setErrorInZipCode(true);
+      error = true;
+    } else {
+      setErrorInZipCode(false);
+    }
+    if (error === true) {
+      return;
+    }
     setBillingsDetails(false);
     setCardInformation(true);
   }
@@ -245,7 +297,7 @@ export default function PaymentForm() {
                   <div className="greyLinePayment"></div>
                 </Grid>
                 <Grid item xs={12} sm={5} container className="verticalAlign">
-                  <CustomButton variant="contained" onClick={() => setBillingsDetails(true)}>Pay by credit card</CustomButton>
+                  <CustomButton variant="contained" onClick={() => setBillingsDetails(true)}>Pay width card</CustomButton>
                 </Grid>
               </Grid>
             </Grid>
@@ -262,6 +314,8 @@ export default function PaymentForm() {
                     variant="outlined"
                     fullWidth
                     label="Firstname"
+                    error={errorInFirstName}
+                    helperText={errorInFirstName ? "You must enter a firstname !" : ""}
                     value={firstName}
                     onChange={e => setFirstName(e.target.value)}
                     required
@@ -273,6 +327,8 @@ export default function PaymentForm() {
                     variant="outlined"
                     fullWidth
                     label="Lastname"
+                    error={errorInLastName}
+                    helperText={errorInLastName ? "You must enter a lastname !" : ""}
                     value={lastName}
                     onChange={e => setLastName(e.target.value)}
                     required
@@ -284,6 +340,8 @@ export default function PaymentForm() {
                     variant="outlined"
                     fullWidth
                     label="Email"
+                    error={errorInEmail}
+                    helperText={errorInEmail ? "You must enter an email !" : ""}
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                     required
@@ -295,6 +353,8 @@ export default function PaymentForm() {
                     variant="outlined"
                     fullWidth
                     label="Country"
+                    error={errorInCountry}
+                    helperText={errorInCountry ? "You must enter a country !" : ""}
                     value={country}
                     onChange={e => setCountry(e.target.value)}
                     required
@@ -306,6 +366,8 @@ export default function PaymentForm() {
                     variant="outlined"
                     fullWidth
                     label="City"
+                    error={errorInCity}
+                    helperText={errorInCity ? "You must enter a city !" : ""}
                     value={city}
                     onChange={e => setCity(e.target.value)}
                     required
@@ -317,6 +379,8 @@ export default function PaymentForm() {
                     variant="outlined"
                     fullWidth
                     label="Zip code"
+                    error={errorInZipCode}
+                    helperText={errorInZipCode ? "You must enter a zip Code !" : ""}
                     value={zipCode}
                     onChange={e => setZipCode(e.target.value)}
                     required
@@ -328,6 +392,8 @@ export default function PaymentForm() {
                     variant="outlined"
                     fullWidth
                     label="Address"
+                    error={errorInAddress}
+                    helperText={errorInAddress ? "You must enter a valid address !" : ""}
                     value={address}
                     onChange={e => setAddress(e.target.value)}
                     required
@@ -351,7 +417,7 @@ export default function PaymentForm() {
                   </div>
                 </Grid>
                 <Grid xs={12} item>
-                    <ButtonBillingDetails variant='contained' onClick={GoToPayment}>Go to payment</ButtonBillingDetails>
+                  <ButtonBillingDetails variant='contained' onClick={GoToPayment}>Go to payment</ButtonBillingDetails>
                 </Grid>
               </Grid>
             </Grid>
@@ -378,12 +444,9 @@ export default function PaymentForm() {
           }
           <Grid container item xs={12} md={4}>
             <Grid item xs={12} >
-              <h2 className=" centerText grey6">Your order</h2>
-
-              <div className=" bgWhite lightShadowCard2 font1 bold200  pl-1 pr-1 size1">
-                <div className="flexBetween ">
-                  <div className="ml-2 mt-2 grey8 bold400 size2 letterSpacing1 height30">Product</div>
-                  <div className="mr-2 mt-2 grey8 bold400 size2 letterSpacing1 height30">Subtotal</div>
+              <div className="bgWhite borderRadius20 lightShadowCard2 font1 bold200 size1 mt-10">
+                <div className="flexCenter bgBlue font12 grey7 ProductSubtotal pb-1">
+                  <div className="ml-2 mt-2 bold400 size2 letterSpacing1 height30">Your recap</div>
                 </div>
                 {itemsInCart.map(product => (
                   <div
@@ -394,19 +457,19 @@ export default function PaymentForm() {
                     <div className="font3">${(Number(product.price / 100) * Number(product.quantity)).toFixed(2)}</div>
                   </div>
                 ))}
-                <div className="flexBetween mt-4 pl-2 pr-2">
-                  <div className="font2 grey8">Total</div>
+                <div className="flexBetween pt-2 mt-2 pb-2 pl-2 pr-2 bgBlue ">
+                  <div className="font2 grey8">Subtotal</div>
                   <span className="greyLineCart"></span>
                   <div className="font3">${(price / 100).toFixed(2)}</div>
                 </div>
-                <div className="flexBetween mt-4 pl-2 pr-2">
+                <div className="flexBetween mt-2 pl-2 pr-2">
                   <div className="font2 grey8">Shipping fees</div>
                   <div className="alignRight font3">${(shippingFeesVar * 1).toFixed(2)}</div>
                 </div>
-                <div className="flexBetween pb-4 mt-4 pl-2 pr-2">
-                  <div className="totalPlusShipping font2 grey8">Total + Shipping fees</div>
-                  <div className="greyLineCart2"></div>
-                  <div className="alignRight font3">${(Number(price / 100) + Number(shippingFeesVar)).toFixed(2)}</div>
+                <div className="flexBetween totalAndShipping pb-1 mt-2 pt-2 pl-2 pr-2 bgBlue">
+                  <div className="totalPlusShipping font2 grey8">Total</div>
+                  <span className="greyLineCart"></span>
+                  <div className="font3">${(Number(price / 100) + Number(shippingFeesVar)).toFixed(2)}</div>
                 </div>
               </div>
             </Grid>

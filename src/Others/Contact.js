@@ -24,6 +24,9 @@ const CustomButton = withStyles((theme) => ({
 }))(Button);
 
 export default function Contact() {
+    
+    window.scroll(0, 0);
+
     return (
         <div className="pt-13">
             <Grid container justifyContent="center" >

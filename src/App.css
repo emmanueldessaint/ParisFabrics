@@ -61,9 +61,20 @@ html {
     display:flex;
     align-items: center;
 }
+.textCenter{
+    text-align: center;
+}
+.flexStart{
+    display:flex;
+    align-items: flex-start;
+}
 .flexEnd{
     display:flex;
     justify-content: flex-end;
+}
+.flexEndItems{
+    display:flex;
+    align-items: flex-end;
 }
 .flexRowReverse{
     display:flex;
@@ -160,6 +171,18 @@ html {
 }
 .borderRadius5{
     border-radius: 5px;
+}
+.borderRadius10{
+    border-radius: 10px;
+}
+.borderRadius15{
+    border-radius: 15px;
+}
+.borderRadius20{
+    border-radius: 20px;
+}
+.borderRadius25{
+    border-radius: 25px;
 }
 .grey1{
     color:rgb(225, 225, 225)

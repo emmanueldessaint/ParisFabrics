@@ -6,7 +6,6 @@ export default function Faq() {
 
     window.scrollTo(0, 0);
 
-
     return (
         <div className="pt-13">
             <Grid container justifyContent="center" >

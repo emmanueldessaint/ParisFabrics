@@ -31,7 +31,7 @@ export default function Request() {
                                 NumberOfNotes ++;
                             }
                             averageNote = totalNotes / allProducts[j].reviews.length;
-                            allProducts[j].avg = averageNote;
+                            allProducts[j].avg = Number(averageNote);
                         }
                         
                     }

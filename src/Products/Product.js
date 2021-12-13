@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import PropTypes from 'prop-types';
-import { makeStyles, styled } from '@material-ui/styles';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Tabs from '@material-ui/core/Tabs';
@@ -13,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import { Link } from "react-router-dom";
 import '../App.css';
 import '../css/Products.css';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import Rating from '@mui/material/Rating';
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -30,28 +28,13 @@ import ReactPaginate from 'react-paginate';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ReactHtmlParser from 'react-html-parser';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import axios from 'axios';
-
-const useStyles = makeStyles(theme => ({
-}));
-
-const Item = styled(Paper)(({ theme }) => ({
-    ...theme.typography.body2,
-    padding: theme.spacing(2),
-    height: 300,
-    "margin": "20px",
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-}));
+import ClearIcon from '@material-ui/icons/Clear';
 
 const LinkButton = withStyles((theme) => ({
     root: {
@@ -107,12 +90,14 @@ function a11yProps(index) {
 const ColorButton = withStyles((theme) => ({
     root: {
         color: '#020202',
-        backgroundColor: '#B7C1DA',
+        backgroundColor: '#7387b7',
         borderRadius: 0,
         opacity: 0.9,
+        fontWeight: '600',
         '&:hover': {
-            backgroundColor: '#ADB4D0',
-            fontWeight: '600',
+            backgroundColor: '#7387b7',
+            opacity: 1,
+            fontWeight: '800',
         },
     },
 }))(Button);
@@ -122,6 +107,8 @@ const ReviewButton = withStyles((theme) => ({
         color: '#ffffff',
         backgroundColor: '#413138',
         borderRadius: 0,
+        borderColor: '#413138',
+        border: '1px solid',
         '&:hover': {
             backgroundColor: '#ffffff',
             color: '#505050',
@@ -162,15 +149,13 @@ const ButtonSubmitComment = withStyles((theme) => ({
 
 export default function Product(props) {
 
-    const classes = useStyles();
-
     const [value, setValue] = React.useState(0);
     const [quantityProduct, setQuantityProduct] = useState(1);
     const [numberInCart, setNumberInCart] = useRecoilState(numberOfItemsInCart);
     const [allItems, setAllItems] = useRecoilState(itemsProduct);
     const [product, setProduct] = useState({});
     const [isLoaded, setIsLoaded] = useState(false);
-    const [bestSellers, setBestSellers] = useRecoilState(itemsBestSellers);
+    const bestSellers = useRecoilValue(itemsBestSellers);
     const [changePage, setChangePage] = useRecoilState(changingPage);
     const [expanded, setExpanded] = React.useState(false);
     const [defaultImage, setDefaultImage] = useState('');
@@ -195,7 +180,7 @@ export default function Product(props) {
             setDefaultImage(product.images[0].url);
             setIsLoaded(true);
             setChangePage(false);
-            // scroll(0, 0);
+            window.scroll(0, 0);
         }
     }, [changePage, allItems]) // on actualise si on change de page car sinon quand on clic sur une autre page, ça n'actualise pas le contenu
 
@@ -404,21 +389,6 @@ export default function Product(props) {
         return 0;
     }
 
-    // useEffect(() => {
-    //     if (isLoaded === true) {
-    //         if (filter === 10) {
-    //         }
-    //         if (filter === 20) {
-    //             let array = JSON.parse(JSON.stringify(product))
-    //             array.reviews.sort(highestRated);
-    //             setProduct(array);
-    //             console.log('filter go')
-    //         }
-    //         if (filter === 30) {
-    //         }
-    //     }
-    // }, [filter, isLoaded])
-
     const changeFilter = (event) => {
         setFilter(event.target.value);
     };
@@ -584,19 +554,22 @@ export default function Product(props) {
                                                 aria-labelledby="alert-dialog-title"
                                                 aria-describedby="alert-dialog-description"
                                             >
+                                                <DialogActions className="mb--3  mr-2">
+                                                    <ClearIcon onClick={handleClose} className=" cursorPointer" />
+                                                </DialogActions>
                                                 <DialogTitle id="alert-dialog-title">{"You must be registered to write a review !"}</DialogTitle>
                                                 {/* <h3 className="centerText">You must be registered to let a review !</h3> */}
                                                 <DialogContent>
                                                     <DialogContentText id="alert-dialog-description">
                                                         <Grid container>
-                                                            <Grid item xs={12} sm={6} spacing={6}>
+                                                            <Grid item xs={12} sm={6} >
                                                                 <Box m={1}>
                                                                     <Link to="/Connect" className="textDecorationNone">
                                                                         <LinkButton fullWidth variant="contained">Connect</LinkButton>
                                                                     </Link>
                                                                 </Box>
                                                             </Grid>
-                                                            <Grid item xs={12} sm={6} spacing={6}>
+                                                            <Grid item xs={12} sm={6}>
                                                                 <Box m={1}>
                                                                     <Link to="/Signup" className="textDecorationNone grey9">
                                                                         <LinkButton fullWidth variant="contained">Register now</LinkButton>
@@ -606,14 +579,6 @@ export default function Product(props) {
                                                         </Grid>
                                                     </DialogContentText>
                                                 </DialogContent>
-                                                {/* <DialogActions>
-                                                    <Button onClick={handleClose} color="primary">
-                                                        Disagree
-                                                    </Button>
-                                                    <Button onClick={handleClose} color="primary" autoFocus>
-                                                        Agree
-                                                    </Button>
-                                                </DialogActions> */}
                                             </Dialog>
                                         </div>
                                         {/* <div>Notre examiner le lignes directires aide les clients à rédiger des avis honnetes</div> */}
@@ -770,11 +735,12 @@ export default function Product(props) {
                                 </FormControl>
                             </div>
                         </div> */}
+                        <div className="mt-4"></div>
                         {currentItems && currentItems.map((review, index) => (
-                            <div key={index} className="lightShadowCard2 p-3 mb-5">
+                            <div key={index} className="lightShadowCard2 p-3 mb-5 bgWhite">
                                 <Grid container className="flexBetween">
                                     <Grid item sm={10} xs={12}>
-                                        <div className="mb-2">
+                                        <div className="mb-2 flexStart">
                                             <span className="mr-2"><AccountCircleIcon /></span>
                                             <span className="font5 bold600 grey8">{review.title}</span>
                                             {/* <span className="ml-3 bold500 size08 font07 grey6">{review.created_at}</span> */}
@@ -1003,9 +969,9 @@ export default function Product(props) {
                                     nextClassName="nextClassName"
                                     breakClassName="breakClassName"
                                 />
-
+                                <div className="mt-4"></div>
                                 {currentItems && currentItems.map((review, index) => (
-                                    <div key={index} className="lightShadowCard2 p-3 mb-5 minWidth500">
+                                    <div key={index} className="lightShadowCard2 p-3 mb-5 minWidth500 bgWhite">
                                         <Grid container className="flexBetween" >
                                             <Grid item sm={10} xs={12}>
                                                 <div className="mb-2 flex">
@@ -1041,7 +1007,7 @@ export default function Product(props) {
                     </Grid>
                 </Grid>
 
-                <Grid className="pt-10" container justifyContent="center">
+                <Grid className="pt-7" container justifyContent="center">
                     <Grid item xs={11} md={11}>
                         <div className="mt-10 mb-3">
                             <div className="flexCenter"><img src={reward} alt="reward_svg" className="rewardIcon opacity6" /></div>

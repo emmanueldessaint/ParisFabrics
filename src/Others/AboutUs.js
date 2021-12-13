@@ -4,6 +4,8 @@ import '../App.css';
 import '../css/AboutUs.css';
 
 export default function AboutUs() {
+    
+    window.scroll(0, 0);
 
     return (
         <div className="pt-13">

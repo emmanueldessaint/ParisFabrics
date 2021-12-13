@@ -39,6 +39,8 @@ const CustomCheckbox = withStyles({
 
 export default function Signup(props) {
 
+    window.scroll(0, 0);
+
     return (
         <Container className="pt-13">
              <Grid container justifyContent="center">

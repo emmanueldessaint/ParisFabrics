@@ -348,12 +348,15 @@
 }
 .pageLinkClassNameReview{
     width:25px;
-    height:30px;
+    height: 20px;
     cursor:pointer;
     margin:7px;
     display:flex;
     justify-content: center;
     align-content: center;
+    display:flex;
+    align-items:center;
+    height:30px;
 }
 .activeLinkClassName{
     background-color:rgb(255, 255, 255);
@@ -361,9 +364,9 @@
     border:1px solid rgb(195, 195, 195);
     border-radius: 2px;
     text-align: center;
-    position:relative;
-    bottom:2px;
-    
+    display:flex;
+    align-items:center;
+    height:30px;
 }
 .breakClassName{
     
@@ -374,19 +377,18 @@
 }
 .previousLinkClassName{
     width:25px;
-    height:30px;
+    margin-top:10px;
     margin-left:10px;
     margin-right:10px;
     cursor:pointer;
-    margin-top:4px;
+    
 }
 .nextLinkClassName{
     width:25px;
-    height:30px;
+    margin-top:10px;
     margin-left:10px;
     margin-right:10px;
     cursor:pointer;
-    margin-top:4px;
 }
 
 .imgAppearTransition{
@@ -424,9 +426,9 @@
         align-items: flex-start;
     }
 }
-@media all and (max-width:1200px) and (min-width:961px) {
+@media all and (max-width:1200px) and (min-width:960px) {
     .imageOneProduct{
-        width:320px;
+        width:309px;
         border-radius:4px;
         object-fit: cover;
         opacity:1;

@@ -9,6 +9,8 @@ import {
 } from "react-router-dom";
 import Container from '@material-ui/core/Container';
 import {withStyles } from '@material-ui/core/styles';
+import axios from 'axios';
+import { useState } from 'react';
 
 const useStyles = makeStyles(theme => ({
     marginTopBanner: {
@@ -40,8 +42,9 @@ const CustomButton = withStyles((theme) => ({
         color: '#ffffff',
         backgroundColor: '#413138',
         borderColor: '#413138',
-        borderRadius: 0,
+        borderRadius: 5,
         border: '1px solid',
+        opacity:0.9,
         '&:hover': {
             backgroundColor: 'transparent',
             color: '#505050',
@@ -57,7 +60,7 @@ const CustomButtonCreate = withStyles((theme) => ({
         color: '#413138',
         backgroundColor: 'transparent',
         borderColor: '#413138',
-        borderRadius: 0,
+        borderRadius: 5,
         border: '1px solid',
         '&:hover': {
             backgroundColor: '#413138',
@@ -65,13 +68,33 @@ const CustomButtonCreate = withStyles((theme) => ({
             border: '1px solid',
             borderColor: '#505050',
             fontWeight: '600',
+            opacity:0.9,
         },
     },
 }))(Button);
 
 export default function Connect(props) {
 
+    window.scroll(0, 0);
+
     const classes = useStyles();
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const connectRequest = () => {
+        var user = {};
+        user.email = email;
+        user.password = password;
+        axios.post("https://parisfabrics.com/api/connect ", {
+            userInfo: user,
+        }).then((res) => {
+           
+
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
 
     return (
         <div className="pt-13">
@@ -86,15 +109,18 @@ export default function Connect(props) {
                                     className={classes.textField}
                                     fullWidth
                                     label="Your email"
+                                    onChange={(e) => setEmail(e.target.value)}
                                 ></TextField>
                                 <TextField
                                     margin="normal"
                                     fullWidth
                                     label="Your password"
+                                    onChange={(e) => setPassword(e.target.value)}
                                 ></TextField>
                                 <CustomButton
                                     className={classes.button}
                                     fullWidth
+                                    onClick={connectRequest}
                                     margin="normal">Connect</CustomButton>
                                 <div className={classes.greyLine}></div>
                                 <h5 className={classes.forgotPassword}>Forgot your <Link to="/ForgotPassword" className="grey9 ml-1"> password ?</Link></h5>

@@ -65,7 +65,7 @@ export default function Products() {
 
     useEffect(() => {
         if (allItems.length !== 0) {
-            // scroll(0, 0);
+            window.scroll(0, 0);
             let newArray = [];
             newArray = allItems.slice(itemsByPage * (actuelPage - 1), itemsByPage * (actuelPage));
             for (var i = 0; i < allItems.length / itemsByPage; i++) {

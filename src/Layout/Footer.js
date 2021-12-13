@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import LiveHelpIcon from '@material-ui/icons/LiveHelp';
 import {Link} from "react-router-dom";
 import creditCard from "../assets/img/creditCard1.png";
-import trackPackage from "../assets/img/trackPackage1.png";
+import MoodIcon from '@material-ui/icons/Mood';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import '../App.css';
 import '../css/Footer.css';
@@ -13,10 +13,11 @@ import YouTubeIcon from '@material-ui/icons/YouTube';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import {useRecoilState,} from 'recoil';
 import { currentPageProduct } from '../Shared/globalState';
+import { InsertEmoticon } from '@material-ui/icons';
 
 export default function Footer() {
 
-    const [setActuelPage] = useRecoilState(currentPageProduct);
+    const [actuelPage, setActuelPage] = useRecoilState(currentPageProduct);
 
     const resetPage = () => {
         setActuelPage(1);
@@ -29,26 +30,26 @@ export default function Footer() {
                     <Grid spacing={2} container item xs={12} sm={11} md={9}>
                         <Grid className="textAlignCenter" item xs={12} sm={6} md={3} >
                             <div className="heightIconsFooter "><img src={creditCard} className="iconsFooter pt-4" alt="logo credit card"/></div>
-                            <span className="grey7 font6 size2">SECURE PAYMENT</span>
+                            <div className="grey7 font6 size2 minHeight50Footer">SECURE PAYMENT</div>
                             <h5 className="font2">With credit card or Paypal</h5>
                         </Grid>
                         <Grid item xs={12} sm={6} md={3} className="textAlignCenter">
-                            <div className="heightIconsFooter "><img src={trackPackage} className="iconsFooterTrack pt-4"  alt="logo satisfied person"/></div>
-                            <span className="grey7 font6 size2">SATISFIED OR REFUNDED</span>
+                            <div className="heightIconsFooter pt-4"><MoodIcon /></div>
+                            <div className="grey7 font6 size2 minHeight50Footer">SATISFIED OR REFUNDED</div>
                             <h5 className="font2">7 days from time of delivery</h5>
 
                         </Grid>
                         <Grid item xs={12} sm={6} md={3} className="textAlignCenter">
 
                             <div className="heightIconsFooter pt-4"><LocalShippingIcon className="iconsFooter"/></div>
-                            <span className="grey7 font6 size2">FREE SHIPPING</span>
+                            <div className="grey7 font6 size2 minHeight50Footer">FREE SHIPPING</div>
                             <h5 className="font2">Guaranteed response within 24 hours</h5>
                         </Grid>
 
 
                         <Grid item xs={12} sm={6} md={3} className="textAlignCenter">
                             <div className="heightIconsFooter pt-4"><LiveHelpIcon className="iconsFooter" /></div>
-                            <span className="grey7 font6 size2">RESPONSIVE CUSTOMER SERVICE</span>
+                            <div className="grey7 font6 size2 minHeight50Footer">RESPONSIVE CUSTOMER SERVICE</div>
                             <h5 className="font2">From 40$ of purchases</h5>
                         </Grid>
                     </Grid>
