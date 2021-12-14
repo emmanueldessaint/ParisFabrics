@@ -5,8 +5,8 @@ import Rating from '@mui/material/Rating';
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import Container from '@material-ui/core/Container';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
-import {useRecoilState} from 'recoil';
-import {Link} from "react-router-dom";
+import { useRecoilState } from 'recoil';
+import { Link } from "react-router-dom";
 import logo from "../assets/img/sewing3.jpg";
 import reward from "../assets/img/reward2.png";
 import earth from "../assets/img/earth1.png";
@@ -105,7 +105,7 @@ export default function Home() {
                         <Grid item xs={12} sm={4} className="flexBetween">
                             <div className="orangeBar"></div>
                             <div className="mt-6 ">
-                            <span className="flexCenter minHeight40"><img src={trackPackage} alt="sewing_icon" className="smallIconsTrack backgroundIcons" /></span>
+                                <span className="flexCenter minHeight40"><img src={trackPackage} alt="sewing_icon" className="smallIconsTrack backgroundIcons" /></span>
                                 <span className="flexCenter mt-2 titleHomeArguments grey7 font6 size1 opacity9 letterSpacing2">TRACKING DELIVERY</span>
                                 <div className="blueBar"></div>
                                 <span className="flexCenter mt-1 grey7 font2 opacity9 letterSpacing1">All around the world</span>
@@ -130,6 +130,8 @@ export default function Home() {
                     <span className="flexCenter font5 mt-1 bold400 bestSellers opacity9">Discover our customers' favorite products !</span>
                 </div>
 
+
+
                 {isLoaded &&
                     <div className="">
                         <Carousel
@@ -137,29 +139,37 @@ export default function Home() {
                             infinite={true}
                         >
                             {bestSellers.map(item => (
-                                <div className="cardProductCarousel lightShadowCard2" key={item.id}>
-                                    <Link to={`/${item.name} `} className="textDecorationNone">
-                                        <img className="imageProductCarousel" src={window.location.origin + `/images/${item.images[0].url}`} alt="product bestsellers"/>
-                                        <div className="hideProduct">
-                                            <div className="elementAppear font5 letterSpacing1">
-                                                DISCOVER
+                                <div>
+                                    {item.coup_de_coeur === "1" && <span className="divFavoriteBestsellers grey7 lightShadowCard2 opacity8 ">FAVOURITE</span>}
+                                    {item.new === "1" && <span className="divNewBestsellers grey7 lightShadowCard2 opacity8 ">NEW</span>}
+                                    {item.coup_de_coeur === "0" && item.new === "0" && <div className="height20"></div>}
+                                    <div className="cardProductCarousel lightShadowCard2" key={item.id}>
+                                        <Link to={`/${item.name} `} className="textDecorationNone">
+                                            <img className="imageProductCarousel" src={window.location.origin + `/images/${item.images[0].url}`} alt="product bestsellers" />
+                                            <div className="hideProduct">
+                                                <div className="elementAppear font5 letterSpacing1">
+                                                    DISCOVER
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="nameProduct font11 letterSpacing1 size3 grey7 flexCenter">{item.name}</div>
-                                        <div className="centerText mt-3 opacity8">
-                                            <Rating
-                                                precision={0.5}
-                                                readOnly
-                                                size="small"
-                                                name="simple-controlled"
-                                                value={item.avg}
-                                                emptyIcon={
-                                                    <StarBorderIcon fontSize="inherit" className="emptyStar" />
-                                                }
-                                            />
-                                        </div>
-                                        <div className="priceProduct font2 grey8 letterSpacing2 mt-2 ml-3 pb-1 opacity9">${(item.price/100).toFixed(2)}</div>
-                                    </Link>
+                                            <div className="nameProduct font11 letterSpacing1 size3 grey7 flexCenter">{item.name}</div>
+                                            <div className="centerText mt-3 opacity8">
+                                                <Rating
+                                                    precision={0.5}
+                                                    readOnly
+                                                    size="small"
+                                                    name="simple-controlled"
+                                                    value={item.avg}
+                                                    emptyIcon={
+                                                        <StarBorderIcon fontSize="inherit" className="emptyStar" />
+                                                    }
+                                                />
+                                            </div>
+                                            <div className="flex">
+                                                {item.sales_price !== "0" && <div className="priceProduct font2 grey8 letterSpacing2 mt-2 ml-3 pb-1 opacity9">${(item.sales_price / 100).toFixed(2)}</div>}
+                                                <div className="priceProduct font2 grey8 letterSpacing2 mt-2 ml-3 pb-1 opacity9">${(item.price / 100).toFixed(2)}</div>
+                                            </div>
+                                        </Link>
+                                    </div>
                                 </div>
                             ))}
                         </Carousel>
@@ -173,7 +183,7 @@ export default function Home() {
                             <Grid >
                                 <div className="textAlignCenter">
                                     <div><span className="size3 bold600 mr-1">{averageNotes}</span>/ 5</div>
-                                    <h4 className="flexCenter opacity9 letterSpacing1 lineHeight1 font2">Based on purchases on AmazingSewing</h4>
+                                    <h4 className="flexCenter opacity9 letterSpacing1 lineHeight1 font2">Based on purchases on ParisFabrics</h4>
                                     <div>
                                         <Rating
                                             precision={0.5}
@@ -218,7 +228,7 @@ export default function Home() {
                                         {/* <div className="ml-2 linkItemComment minHeight30">{item.product.name}</div> */}
                                         <div className="lightShadowCard3">
                                             {review.description.length !== null &&
-                                                <div className="mt-2 pl-2 pt-2 grey6 bold100 font2 minHeight90">{review.description.length < 120 ? review.description : review.description.substring(0, 120) + " (...)"}</div>
+                                                <div className="mt-2 pl-2 pt-2 pr-2 grey6 bold100 font2 minHeight90">{review.description.length < 120 ? review.description : review.description.substring(0, 120) + " (...)"}</div>
                                             }
                                             <div className="mt-5 pl-2 pb-2 font2 bold500 grey9 lightShadowCard3 pt-2">{review.title}</div>
                                         </div>

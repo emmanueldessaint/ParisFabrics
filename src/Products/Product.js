@@ -35,6 +35,8 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import axios from 'axios';
 import ClearIcon from '@material-ui/icons/Clear';
+import { Line } from 'rc-progress';
+import StarRateIcon from '@material-ui/icons/StarRate';
 
 const LinkButton = withStyles((theme) => ({
     root: {
@@ -278,6 +280,7 @@ export default function Product(props) {
             collection.threeStars = threeStars;
             collection.twoStars = twoStars;
             collection.oneStar = oneStar;
+            collection.nbOfStars = Number(oneStar + twoStars + threeStars + fourStars + fiveStars);
             setNumberOfStars(collection)
         }
     }, [product])
@@ -476,13 +479,11 @@ export default function Product(props) {
                                 </Grid>
                                 <Grid item xs={11} sm={6}>
                                     <div className="divPc alignRight">
-
-                                        <ColorButton onClick={addToLocalStorage} variant="contained" style={{ minWidth: '180px', minHeight: '25px', maxHeight: '25px', fontFamily: 'sans-serif', letterSpacing: '2px', fontWeight: '300', fontSize: '0.8em' }}> Add to cart</ColorButton>
-
+                                        <ColorButton onClick={addToLocalStorage} variant="contained" style={{ minWidth: '180px', minHeight: '25px', maxHeight: '25px', fontFamily: 'sans-serif', letterSpacing: '2px', fontWeight: '600', fontSize: '0.8em', backgroundColor: 'orange' }}> Add to cart</ColorButton>
                                     </div>
                                     <div className="divMobile">
-                                        <Link to="/cart">
-                                            <ColorButton onClick={addToLocalStorage} variant="contained" fullWidth style={{ minHeight: '25px', maxHeight: '25px', fontFamily: 'sans-serif', letterSpacing: '2px', fontWeight: '300', fontSize: '0.8em', marginTop: '20px' }}> Add to cart</ColorButton>
+                                        <Link to="/cart" className="textDecorationNone">
+                                            <ColorButton onClick={addToLocalStorage} variant="contained" fullWidth style={{ minHeight: '25px', maxHeight: '25px', fontFamily: 'sans-serif', letterSpacing: '2px', fontWeight: '600', fontSize: '0.8em', marginTop: '20px', backgroundColor: 'orange' }}> Add to cart</ColorButton>
                                         </Link>
                                     </div>
                                 </Grid>
@@ -586,67 +587,32 @@ export default function Product(props) {
                                     <div className="">
                                         <div>
                                             <div className="flex">
-                                                <div className="numberStars mr-1 bold800 width20 alignRight">{numberOfStars.fiveStars}</div>
-                                                <Rating
-                                                    size="small"
-                                                    precision={0.5}
-                                                    readOnly
-                                                    className=""
-                                                    name="simple-controlled"
-                                                    value={5}
-                                                />
+                                                <div className="numberStars mr-1 bold800 width20 alignRight grey7"><StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px' }} />{numberOfStars.fiveStars}</div>
+                                                <Line percent={(numberOfStars.fiveStars / numberOfStars.nbOfStars) * 100} strokeWidth="1" strokeColor="orange" trailColor="grey" className="progressBar" />
                                             </div>
                                         </div>
                                         <div>
                                             <div className="flex">
-                                                <div className="numberStars mr-1 bold800 width20 alignRight">{numberOfStars.fourStars}</div>
-                                                <Rating
-                                                    size="small"
-                                                    precision={0.5}
-                                                    readOnly
-                                                    className=""
-                                                    name="simple-controlled"
-                                                    value={4}
-                                                />
+                                                <div className="numberStars mr-1 bold800 width20 alignRight grey7"><StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px' }} />{numberOfStars.fourStars}</div>
+                                                <Line percent={(numberOfStars.fourStars / numberOfStars.nbOfStars) * 100} strokeWidth="1" strokeColor="orange" trailColor="grey" className="progressBar" />
                                             </div>
                                         </div>
                                         <div>
                                             <div className="flex">
-                                                <div className="numberStars mr-1 bold800 width20 alignRight">{numberOfStars.threeStars}</div>
-                                                <Rating
-                                                    size="small"
-                                                    precision={0.5}
-                                                    readOnly
-                                                    className=""
-                                                    name="simple-controlled"
-                                                    value={3}
-                                                />
+                                                <div className="numberStars mr-1 bold800 width20 alignRight grey7"><StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px' }} />{numberOfStars.threeStars}</div>
+                                                <Line percent={(numberOfStars.threeStars / numberOfStars.nbOfStars) * 100} strokeWidth="1" strokeColor="orange" trailColor="grey" className="progressBar" />
                                             </div>
                                         </div>
                                         <div>
                                             <div className="flex">
-                                                <div className="numberStars mr-1 bold800 width20 alignRight">{numberOfStars.twoStars}</div>
-                                                <Rating
-                                                    size="small"
-                                                    precision={0.5}
-                                                    readOnly
-                                                    className=""
-                                                    name="simple-controlled"
-                                                    value={2}
-                                                />
+                                                <div className="numberStars mr-1 bold800 width20 alignRight grey7"><StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px' }} />{numberOfStars.twoStars}</div>
+                                                <Line percent={(numberOfStars.twoStars / numberOfStars.nbOfStars) * 100} strokeWidth="1" strokeColor="orange" trailColor="grey" className="progressBar" />
                                             </div>
                                         </div>
                                         <div>
                                             <div className="flex">
-                                                <div className="numberStars mr-1 bold800 width20 alignRight">{numberOfStars.oneStar}</div>
-                                                <Rating
-                                                    size="small"
-                                                    precision={0.5}
-                                                    readOnly
-                                                    className=""
-                                                    name="simple-controlled"
-                                                    value={1}
-                                                />
+                                                <div className="numberStars mr-1 bold800 width20 alignRight grey7"><StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px' }} />{numberOfStars.oneStar}</div>
+                                                <Line percent={(numberOfStars.oneStar / numberOfStars.nbOfStars) * 100} strokeWidth="1" strokeColor="orange" trailColor="grey" className="progressBar" />
                                             </div>
                                         </div>
                                     </div>
@@ -767,8 +733,6 @@ export default function Product(props) {
                                 </Grid>
                             </div>
                         ))}
-
-
                     </TabPanel>
                 </Box>
                 <Grid container justifyContent="center" className="productMobile mt-7">
@@ -846,70 +810,34 @@ export default function Product(props) {
                                     <div className="mt-4">
                                         <div>
                                             <div className="flex">
-                                                <div className=" mr-1 bold800 width20 alignRight">{numberOfStars.fiveStars}</div>
-                                                <Rating
-                                                    size="small"
-                                                    precision={0.5}
-                                                    readOnly
-                                                    className=""
-                                                    name="simple-controlled"
-                                                    value={5}
-                                                />
+                                                <div className="numberStars mr-1 bold800 width20 alignRight grey7"><StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px' }} />{numberOfStars.fiveStars}</div>
+                                                <Line percent={(numberOfStars.fiveStars / numberOfStars.nbOfStars) * 100} strokeWidth="1" strokeColor="orange" trailColor="grey" className="progressBar" />
                                             </div>
                                         </div>
                                         <div>
                                             <div className="flex">
-                                                <div className=" mr-1 bold800 width20 alignRight">{numberOfStars.fourStars}</div>
-                                                <Rating
-                                                    size="small"
-                                                    precision={0.5}
-                                                    readOnly
-                                                    className=""
-                                                    name="simple-controlled"
-                                                    value={4}
-                                                />
+                                                <div className="numberStars mr-1 bold800 width20 alignRight grey7"><StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px' }} />{numberOfStars.fourStars}</div>
+                                                <Line percent={(numberOfStars.fourStars / numberOfStars.nbOfStars) * 100} strokeWidth="1" strokeColor="orange" trailColor="grey" className="progressBar" />
                                             </div>
                                         </div>
                                         <div>
                                             <div className="flex">
-                                                <div className=" mr-1 bold800 width20 alignRight">{numberOfStars.threeStars}</div>
-                                                <Rating
-                                                    size="small"
-                                                    precision={0.5}
-                                                    readOnly
-                                                    className=""
-                                                    name="simple-controlled"
-                                                    value={3}
-                                                />
+                                                <div className="numberStars mr-1 bold800 width20 alignRight grey7"><StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px' }} />{numberOfStars.threeStars}</div>
+                                                <Line percent={(numberOfStars.threeStars / numberOfStars.nbOfStars) * 100} strokeWidth="1" strokeColor="orange" trailColor="grey" className="progressBar" />
                                             </div>
                                         </div>
                                         <div>
                                             <div className="flex">
-                                                <div className=" mr-1 bold800 width20 alignRight">{numberOfStars.twoStars}</div>
-                                                <Rating
-                                                    size="small"
-                                                    precision={0.5}
-                                                    readOnly
-                                                    className=""
-                                                    name="simple-controlled"
-                                                    value={2}
-                                                />
+                                                <div className="numberStars mr-1 bold800 width20 alignRight grey7"><StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px' }} />{numberOfStars.twoStars}</div>
+                                                <Line percent={(numberOfStars.twoStars / numberOfStars.nbOfStars) * 100} strokeWidth="1" strokeColor="orange" trailColor="grey" className="progressBar" />
                                             </div>
                                         </div>
                                         <div>
                                             <div className="flex">
-                                                <div className=" mr-1 bold800 width20 alignRight">{numberOfStars.oneStar}</div>
-                                                <Rating
-                                                    size="small"
-                                                    precision={0.5}
-                                                    readOnly
-                                                    className=""
-                                                    name="simple-controlled"
-                                                    value={1}
-                                                />
+                                                <div className="numberStars mr-1 bold800 width20 alignRight grey7"><StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px' }} />{numberOfStars.oneStar}</div>
+                                                <Line percent={(numberOfStars.oneStar / numberOfStars.nbOfStars) * 100} strokeWidth="1" strokeColor="orange" trailColor="grey" className="progressBar" />
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
 

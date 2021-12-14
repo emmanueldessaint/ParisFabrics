@@ -53,6 +53,9 @@
     color:white;
     /* border:1px solid rgb(0, 0, 0); */
     cursor:pointer;
+    height:34px;
+    position:relative;
+    top:5px;
 }
 .titleFooter{
     font-size:150%;

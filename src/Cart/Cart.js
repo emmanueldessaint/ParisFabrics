@@ -197,7 +197,7 @@ export default function Cart() {
                       </div>
                       {itemsInCart.map(product => (
                         <div
-                          className="flex flexBetween mt-4 pl-2 pr-2 "
+                          className="flex flexBetween mt-2 mb-2 pl-2 pr-2 "
                           key={product.id}
                         >
                           <div className="font2 grey8">{product.name} <span className="bold500">x</span> {product.quantity}</div>

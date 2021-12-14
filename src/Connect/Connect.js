@@ -15,7 +15,6 @@ import { useState } from 'react';
 const useStyles = makeStyles(theme => ({
     marginTopBanner: {
         "margin-top": "170px;",
-
         "width": "70%",
         "margin-left": "auto",
         "margin-right": "auto",
@@ -80,9 +79,27 @@ export default function Connect(props) {
     const classes = useStyles();
 
     const [email, setEmail] = useState('');
+    const [errorInEmail, setErrorInEmail] = useState(false);
     const [password, setPassword] = useState('');
+    const [errorInPassword, setErrorInPassword] = useState(false);
 
     const connectRequest = () => {
+        let errorInForm = false
+        if (email.length < 2) {
+            setErrorInEmail(true);
+            errorInForm = true;
+        } else {
+            setErrorInEmail(false);
+        }
+        if (password.length < 2) {
+            setErrorInPassword(true);
+            errorInForm = true;
+        } else {
+            setErrorInPassword(false);
+        }
+        if (errorInForm === true) {
+            return;
+        }
         var user = {};
         user.email = email;
         user.password = password;
@@ -109,18 +126,24 @@ export default function Connect(props) {
                                     className={classes.textField}
                                     fullWidth
                                     label="Your email"
+                                    error={errorInEmail}
+                                    helperText={errorInEmail ? "You must enter an email !" : ""}
                                     onChange={(e) => setEmail(e.target.value)}
                                 ></TextField>
                                 <TextField
                                     margin="normal"
                                     fullWidth
                                     label="Your password"
+                                    error={errorInPassword}
+                                    helperText={errorInPassword ? "You must enter a password !" : ""}
                                     onChange={(e) => setPassword(e.target.value)}
+                                    type="password"
                                 ></TextField>
                                 <CustomButton
                                     className={classes.button}
                                     fullWidth
                                     onClick={connectRequest}
+                                    style={{letterSpacing:1, wordSpacing:2,}}
                                     margin="normal">Connect</CustomButton>
                                 <div className={classes.greyLine}></div>
                                 <h5 className={classes.forgotPassword}>Forgot your <Link to="/ForgotPassword" className="grey9 ml-1"> password ?</Link></h5>
@@ -132,6 +155,7 @@ export default function Connect(props) {
                                 <CustomButtonCreate
                                     className={classes.button}
                                     fullWidth
+                                    style={{letterSpacing:1, wordSpacing:2,}}
                                     margin="normal">Create account
                                 </CustomButtonCreate>
                             </Link>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import '../App.css';
 import '../css/Products.css';
 import { numberOfPageProducts } from '../Shared/globalState'
@@ -75,6 +75,7 @@ export default function Products() {
             setItemsInCurrentPage(newArray)
             setNumberOfPages(emptyArray);
             setIsLoaded(true);
+            console.log(allItems)
         }
     }, [allItems, actuelPage])
 
@@ -190,16 +191,18 @@ export default function Products() {
                 <Grid container justifyContent="center" className="mt-8">
                     <Grid container item xs={12} sm={12} md={11} lg={11}>
                         <Grid item xs={12} sm={6}>
-                            {numberOfPages.map(item => (
-                                <div
-                                    key={item}
-                                >
-                                    {item === actuelPage
-                                        ? <button className="boutonPaginationSelected  generalBackground borderNone" onClick={() => handleChangePage(item)}>{item}</button>
-                                        : <button className="boutonPagination generalBackground borderNone" onClick={() => handleChangePage(item)}>{item}</button>
-                                    }
-                                </div>
-                            ))}
+                            <div className="paginationResponsive">
+                                {numberOfPages.map(item => (
+                                    <div
+                                        key={item}
+                                    >
+                                        {item === actuelPage
+                                            ? <button className="boutonPaginationSelected  generalBackground borderNone" onClick={() => handleChangePage(item)}>{item}</button>
+                                            : <button className="boutonPagination generalBackground borderNone" onClick={() => handleChangePage(item)}>{item}</button>
+                                        }
+                                    </div>
+                                ))}
+                            </div>
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <div className="divPc alignRight mr-4">
@@ -250,51 +253,56 @@ export default function Products() {
                     <Grid container item xs={12} sm={12} md={12} xl={11}>
                         <div className="contentProducts">
                             {itemsInCurrentPage.map((item, index) => (
+                                <div>
+                                    {item.coup_de_coeur === "1" && <span className="divFavoriteProduct grey7 lightShadowCard2 opacity8 ">FAVOURITE</span>}
+                                    {item.new === "1" && <span className="divNewProduct grey7 lightShadowCard2 opacity8 ">NEW</span>}
+                                    {item.coup_de_coeur === "0" && item.new === "0" && <div className="height20"></div>}
+                                    <div className="cardProduct lightShadowCard2 productComputer" key={index}>
 
-                                <div className="cardProduct lightShadowCard2 productComputer" key={index}>
-                                    <Link to={`/${item.name} `} className="textDecorationNone">
-                                        <img className="imageProduct" src={window.location.origin + `/images/${item.images[0].url}`} />
-                                        <div className="hideProduct">
-                                            <div className="elementAppear grey7">
-                                                DISCOVER
+                                        <Link to={`/${item.name} `} className="textDecorationNone">
+                                            <img className="imageProduct" src={window.location.origin + `/images/${item.images[0].url}`} />
+                                            <div className="hideProduct">
+                                                <div className="elementAppear grey7">
+                                                    DISCOVER
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="nameProduct font10 letterSpacing2 size3 grey8 flexCenter">{item.name}</div>
-                                        <div className="flexBetween font2">
-                                            <div className="priceProduct grey8 letterSpacing2 mt-4 ml-3 pb-1">${(item.price / 100).toFixed(2)}</div>
-                                            {item.reviews.length > 0 &&
-                                                <div className="flex productDetails mt-4 mr-3 pb-1 opacity8">
-                                                    <div className="">({item.reviews.length})<span className="ml-1"></span></div>
-                                                    <Rating
-                                                        precision={0.5}
-                                                        readOnly
-                                                        size="small"
-                                                        name="simple-controlled"
-                                                        value={item.avg}
-                                                        emptyIcon={
-                                                            <StarBorderIcon fontSize="inherit" className="emptyStar" />
-                                                        }
-                                                    />
-                                                </div>
-                                            }
-                                            {item.reviews.length < 1 &&
-                                                <div className="flex productDetails mt-4 mr-3 pb-1 opacity8">
-                                                    <div className="grey6">(0)<span className="ml-1"></span></div>
-                                                    <Rating
-                                                        precision={0.5}
-                                                        readOnly
-                                                        size="small"
-                                                        name="simple-controlled"
-                                                        value={0}
-                                                        emptyIcon={
-                                                            <StarBorderIcon fontSize="inherit" className="emptyStar" />
-                                                        }
-                                                    />
-                                                </div>
-                                            }
-                                        </div>
-                                    </Link>
+                                            <div className="nameProduct font10 letterSpacing2 size3 grey8 flexCenter">{item.name}</div>
+                                            <div className="flexBetween font2">
+                                                <div className="priceProduct grey8 letterSpacing2 mt-4 ml-3 pb-1">${(item.price / 100).toFixed(2)}</div>
+                                                {item.reviews.length > 0 &&
+                                                    <div className="flex productDetails mt-4 mr-3 pb-1 opacity8">
+                                                        <div className="">({item.reviews.length})<span className="ml-1"></span></div>
+                                                        <Rating
+                                                            precision={0.5}
+                                                            readOnly
+                                                            size="small"
+                                                            name="simple-controlled"
+                                                            value={item.avg}
+                                                            emptyIcon={
+                                                                <StarBorderIcon fontSize="inherit" className="emptyStar" />
+                                                            }
+                                                        />
+                                                    </div>
+                                                }
+                                                {item.reviews.length < 1 &&
+                                                    <div className="flex productDetails mt-4 mr-3 pb-1 opacity8">
+                                                        <div className="grey6">(0)<span className="ml-1"></span></div>
+                                                        <Rating
+                                                            precision={0.5}
+                                                            readOnly
+                                                            size="small"
+                                                            name="simple-controlled"
+                                                            value={0}
+                                                            emptyIcon={
+                                                                <StarBorderIcon fontSize="inherit" className="emptyStar" />
+                                                            }
+                                                        />
+                                                    </div>
+                                                }
+                                            </div>
+                                        </Link>
 
+                                    </div>
                                 </div>
                                 // <Grid
                                 //     item xs={12} sm={6} md={4} lg={3}

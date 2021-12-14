@@ -10,18 +10,31 @@ import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import '../App.css';
 import '../css/Footer.css';
 import YouTubeIcon from '@material-ui/icons/YouTube';
-import MailOutlineIcon from '@material-ui/icons/MailOutline';
-import {useRecoilState,} from 'recoil';
+import {useRecoilValue} from 'recoil';
 import { currentPageProduct } from '../Shared/globalState';
 import { InsertEmoticon } from '@material-ui/icons';
+import { useState } from 'react';
+import axios from 'axios';
 
 export default function Footer() {
 
-    const [actuelPage, setActuelPage] = useRecoilState(currentPageProduct);
+    const setActuelPage = useRecoilValue(currentPageProduct);
+    const [email, setEmail] = useState('');
 
     const resetPage = () => {
         setActuelPage(1);
       }
+
+    const addUserNewsletter = () => {
+        axios.post("https://parisfabrics.com/api/addPersonNewsletter ", {
+            userInfo: email,
+        }).then((res) => {
+           
+
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
 
     return (
         <div className="pt-10 generalBackground">
@@ -108,8 +121,12 @@ export default function Footer() {
                                             <TextField
                                                 className="inputFooter"
                                                 placeholder=" Your email ..."
+                                                margin="normal"
+                                                style={{paddingLeft:'10px', borderTopLeftRadius:'5px', borderBottomLeftRadius:'5px',}}
+                                                onChange={(e) => setEmail(e.target.value)}
                                             />
-                                            <button className="buttonSendNewsletters font8"><MailOutlineIcon className=""/></button>
+                                            {/* <button className="buttonSendNewsletters font8 borderNone mt-2"><MailOutlineIcon className=""/></button> */}
+                                            <button onClick={addUserNewsletter} className="buttonSendNewsletters font2 mt-2 letterSpacing1 size2">OK </button>
                                         </div>
                                     </div>
                                 </Grid>

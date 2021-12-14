@@ -474,18 +474,50 @@
         opacity:1;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
+@media all and (min-width:600px) and (max-width:1200px) {
+    .paginationResponsive{
+        margin-left:13%;
+    }
+}
+@media all and (min-width:1200px)  {
+    .paginationResponsive{
+        margin-left:20px;
+    }
+}
+.progressBar{
+    width:160px;
+    height:10px;
+    border-radius:5px;
+    margin-top:5px;
+}
+.divNewProduct{
+    color: rgb(239 239 239);
+    margin-left:10px;
+    padding-bottom:2px;
+    padding-left:10px;
+    padding-top:5px;
+    padding-right:10px;
+    letter-spacing: 2px;
+    background-color: #3a3a3a;
+    position:relative;
+    top:10px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
+.divFavoriteProduct{
+    color: rgb(239 239 239);
+    margin-left:10px;
+    padding-bottom:2px;
+    padding-left:10px;
+    padding-top:5px;
+    padding-right:10px;
+    letter-spacing: 2px;
+    background-color: #881212;
+    position:relative;
+    top:11px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
 
 
 
