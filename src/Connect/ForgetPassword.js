@@ -7,6 +7,7 @@ import Box from '@material-ui/core/Box';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
+import { Helmet } from "react-helmet";
 
 const CustomButton = withStyles((theme) => ({
     root: {
@@ -43,6 +44,10 @@ export default function Signup(props) {
 
     return (
         <Container className="pt-13">
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Forgot Password - Paris Fabrics</title>
+            </Helmet>
              <Grid container justifyContent="center">
                     <Grid container spacing={2} item xs={12} sm={10} md={6}>
                     <Grid item xs={12} >

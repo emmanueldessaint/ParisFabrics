@@ -11,6 +11,7 @@ import { CardElement, useStripe, useElements, CardNumberElement, CardExpiryEleme
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
+import { Helmet } from "react-helmet";
 
 const CustomButton = withStyles((theme) => ({
   root: {
@@ -274,6 +275,10 @@ export default function PaymentForm() {
 
   return (
     <Container>
+      <Helmet>
+                <meta charSet="utf-8" />
+                <title>Checkout - Paris Fabrics</title>
+            </Helmet>
       <Grid container justifyContent="center">
         <Grid container spacing={5} item xs={12} sm={12} md={12} lg={12}>
           {billingsDetails === false && cardInformation === false &&

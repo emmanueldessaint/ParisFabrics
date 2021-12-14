@@ -18,6 +18,7 @@ import { itemsProduct, itemsBestSellers, averageNoteArticles } from '../Shared/g
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import trackPackage from "../assets/img/trackPackage1.png";
+import { Helmet } from "react-helmet";
 
 export default function Home() {
 
@@ -90,6 +91,10 @@ export default function Home() {
                 <img src={logo} alt="Logo" className="imgIntro" />
             </div>
             <Container >
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Home - Paris Fabrics</title>
+            </Helmet>
                 <Grid container justifyContent="center" className="menuQuality">
                     <Grid item container xs={12} md={11}>
                         <Grid item xs={12} sm={4}>
@@ -165,7 +170,7 @@ export default function Home() {
                                                 />
                                             </div>
                                             <div className="flex">
-                                                {item.sales_price !== "0" && <div className="priceProduct font2 grey8 letterSpacing2 mt-2 ml-3 pb-1 opacity9">${(item.sales_price / 100).toFixed(2)}</div>}
+                                                {item.sales_price !== "0" && item.sales_price !== null &&<div className="priceProduct font2 letterSpacing2 mt-2 ml-3 pb-1 opacity9 textDecorationLineThrough grey6">${(item.sales_price / 100).toFixed(2)}</div>}
                                                 <div className="priceProduct font2 grey8 letterSpacing2 mt-2 ml-3 pb-1 opacity9">${(item.price / 100).toFixed(2)}</div>
                                             </div>
                                         </Link>

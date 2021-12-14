@@ -129,6 +129,9 @@ html {
 .textDecorationNone{
     text-decoration: none;
 }
+.textDecorationLineThrough{
+    text-decoration-line: line-through;
+}
 .bgWhite{
     background-color:white;
 }

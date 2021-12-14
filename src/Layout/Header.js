@@ -22,8 +22,6 @@ import Hamburger from 'hamburger-react';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { useRecoilState } from 'recoil';
 
-
-
 const useStyles = makeStyles(theme => ({
   alignTitle: {
     "display": "flex",

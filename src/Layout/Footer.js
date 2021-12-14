@@ -56,14 +56,14 @@ export default function Footer() {
 
                             <div className="heightIconsFooter pt-4"><LocalShippingIcon className="iconsFooter"/></div>
                             <div className="grey7 font6 size2 minHeight50Footer">FREE SHIPPING</div>
-                            <h5 className="font2">Guaranteed response within 24 hours</h5>
+                            <h5 className="font2">From 40$ of purchases</h5>
                         </Grid>
 
 
                         <Grid item xs={12} sm={6} md={3} className="textAlignCenter">
                             <div className="heightIconsFooter pt-4"><LiveHelpIcon className="iconsFooter" /></div>
                             <div className="grey7 font6 size2 minHeight50Footer">RESPONSIVE CUSTOMER SERVICE</div>
-                            <h5 className="font2">From 40$ of purchases</h5>
+                            <h5 className="font2">Guaranteed response within 24 hours</h5>
                         </Grid>
                     </Grid>
                 </Grid>

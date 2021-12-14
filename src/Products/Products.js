@@ -17,7 +17,7 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Snackbar from '@material-ui/core/Snackbar';
 import { makeStyles } from '@material-ui/core/styles';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
-
+import { Helmet } from "react-helmet";
 
 // function Alert(props) {
 //     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -188,6 +188,10 @@ export default function Products() {
     } else {
         return (
             <Container className="pt-13">
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <title>Our catalog - Paris Fabrics</title>
+                </Helmet>
                 <Grid container justifyContent="center" className="mt-8">
                     <Grid container item xs={12} sm={12} md={11} lg={11}>
                         <Grid item xs={12} sm={6}>
@@ -268,7 +272,10 @@ export default function Products() {
                                             </div>
                                             <div className="nameProduct font10 letterSpacing2 size3 grey8 flexCenter">{item.name}</div>
                                             <div className="flexBetween font2">
-                                                <div className="priceProduct grey8 letterSpacing2 mt-4 ml-3 pb-1">${(item.price / 100).toFixed(2)}</div>
+                                                <div>
+                                                    {item.sales_price !== "0" && item.sales_price !== null && <div className="priceProduct font2 letterSpacing2 mt-2 ml-3 pb-1 opacity9 textDecorationLineThrough grey6">${(item.sales_price / 100).toFixed(2)}</div>}
+                                                    <div className="priceProduct grey8 letterSpacing2 mt-4 ml-3 pb-1 height40">${(item.price / 100).toFixed(2)}</div>
+                                                </div>
                                                 {item.reviews.length > 0 &&
                                                     <div className="flex productDetails mt-4 mr-3 pb-1 opacity8">
                                                         <div className="">({item.reviews.length})<span className="ml-1"></span></div>

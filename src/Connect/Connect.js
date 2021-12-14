@@ -11,6 +11,7 @@ import Container from '@material-ui/core/Container';
 import {withStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import { useState } from 'react';
+import { Helmet } from "react-helmet";
 
 const useStyles = makeStyles(theme => ({
     marginTopBanner: {
@@ -116,6 +117,10 @@ export default function Connect(props) {
     return (
         <div className="pt-13">
             <Container>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Connect - Paris Fabrics</title>
+            </Helmet>
                 <Grid container justifyContent="center">
                     <Grid container justifyContent="center" spacing={8} item xs={11} sm={12} md={11}>
                         <Grid item xs={12} sm={6}>

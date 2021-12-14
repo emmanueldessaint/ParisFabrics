@@ -2,6 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import '../App.css';
 import '../css/AboutUs.css';
+import { Helmet } from "react-helmet";
 
 export default function AboutUs() {
     
@@ -9,6 +10,10 @@ export default function AboutUs() {
 
     return (
         <div className="pt-13">
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>About us - Paris Fabrics</title>
+            </Helmet>
             <Grid container justifyContent="center" className="menuQuality">
                 <Grid item container xs={12} md={10} spacing={2}>
                     <Grid xs={12} item>

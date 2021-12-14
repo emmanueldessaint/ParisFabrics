@@ -1,6 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import '../App.css';
+import { Helmet } from "react-helmet";
 
 export default function TermsOfService() {
 
@@ -8,6 +9,10 @@ export default function TermsOfService() {
 
     return (
         <div className="pt-13 grey8 font2">
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Terms of Service - Paris Fabrics</title>
+            </Helmet>
             <Grid container justifyContent="center" >
                 <Grid item container xs={11} sm={10} md={9} lg={8} spacing={2}>
                     <div className="mt-7 centerText size5 letterSpacing2">Terms of service</div>

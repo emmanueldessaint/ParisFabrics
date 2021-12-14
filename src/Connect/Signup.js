@@ -95,8 +95,7 @@ export default function Signup(props) {
         <Container className="pt-15">
             <Helmet>
                 <meta charSet="utf-8" />
-                <title>ParisFabrics - Signup</title>
-                {/* <link rel="canonical" href="http://mysite.com/example" /> */}
+                <title>Signup - Paris Fabrics</title>
             </Helmet>
             <Grid justifyContent='center' container>
                 <Grid container spacing={2} item xs={12} sm={10} md={8} >

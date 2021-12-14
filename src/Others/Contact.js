@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
+import { Helmet } from "react-helmet";
 
 const CustomButton = withStyles((theme) => ({
     root: {
@@ -29,6 +30,10 @@ export default function Contact() {
 
     return (
         <div className="pt-13">
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Contact - Paris Fabrics</title>
+            </Helmet>
             <Grid container justifyContent="center" >
                 <Grid item xs={11} sm={9} md={7}>
                     <Box>

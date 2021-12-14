@@ -37,6 +37,7 @@ import axios from 'axios';
 import ClearIcon from '@material-ui/icons/Clear';
 import { Line } from 'rc-progress';
 import StarRateIcon from '@material-ui/icons/StarRate';
+import { Helmet } from "react-helmet";
 
 const LinkButton = withStyles((theme) => ({
     root: {
@@ -421,6 +422,10 @@ export default function Product(props) {
     } else {
         return (
             <Container className="pt-15 singleProduct">
+                <Helmet>
+                <meta charSet="utf-8" />
+                <title>{product.name} - Paris Fabrics</title>
+            </Helmet>
                 <Grid container justifyContent="center" spacing={6}>
                     <Grid container item xs={12} sm={11} md={6} className="dispositionImageProduct">
 

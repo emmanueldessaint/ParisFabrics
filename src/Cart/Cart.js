@@ -8,6 +8,7 @@ import '../css/Cart.css';
 import { numberOfItemsInCart, shippingFees } from '../Shared/globalState';
 import { useRecoilState } from 'recoil';
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const ColorButton = withStyles((theme) => ({
   root: {
@@ -94,6 +95,10 @@ export default function Cart() {
   } else {
     return (
       <Container>
+        <Helmet>
+                <meta charSet="utf-8" />
+                <title>Your cart - Paris Fabrics</title>
+            </Helmet>
         <Grid className="pt-12" container justifyContent="center">
           <Grid item xs={12} sm={11} md={11} >
             {/* <div className="flexCenter letterSpacing1 font5 grey7 mb-4 mt-2 size4">Here is your cart ...</div> */}
