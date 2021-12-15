@@ -37,6 +37,9 @@ html {
     text-align: justify;
     text-justify: inter-word;
 }
+.textJustify{
+    text-align: justify;
+}
 .emptyStar{
     color:rgb(253, 225, 149);
 }
@@ -298,6 +301,21 @@ html {
  .height20{
      height:20px;
  }
+ .height21{
+     height:21px;
+ }
+ .height22{
+     height:22px;
+ }
+ .height23{
+     height:23px;
+ }
+ .height24{
+     height:24px;
+ }
+ .height25{
+     height:25px;
+ }
  .height27{
      height:27px;
  }
@@ -370,16 +388,16 @@ html {
  .lineHeight1{
     line-height: 115%;
  }
- .lineHeight1{
+ .lineHeight2{
     line-height: 130%;
  }
- .lineHeight1{
+ .lineHeight3{
     line-height: 145%;
  }
- .lineHeight1{
+ .lineHeight4{
     line-height: 160%;
  }
- .lineHeight1{
+ .lineHeight5{
     line-height: 175%;
  }
  .letterSpacing1{

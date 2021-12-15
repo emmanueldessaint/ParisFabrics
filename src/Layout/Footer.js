@@ -43,26 +43,26 @@ export default function Footer() {
                     <Grid spacing={2} container item xs={12} sm={11} md={9}>
                         <Grid className="textAlignCenter" item xs={12} sm={6} md={3} >
                             <div className="heightIconsFooter "><img src={creditCard} className="iconsFooter pt-4" alt="logo credit card"/></div>
-                            <div className="grey7 font6 size2 minHeight50Footer">SECURE PAYMENT</div>
+                            <div className="grey7 font3 size2 minHeight50Footer">SECURE PAYMENT</div>
                             <h5 className="font2">With credit card or Paypal</h5>
                         </Grid>
                         <Grid item xs={12} sm={6} md={3} className="textAlignCenter">
                             <div className="heightIconsFooter pt-4"><MoodIcon /></div>
-                            <div className="grey7 font6 size2 minHeight50Footer">SATISFIED OR REFUNDED</div>
+                            <div className="grey7 font3 size2 minHeight50Footer">SATISFIED OR REFUNDED</div>
                             <h5 className="font2">7 days from time of delivery</h5>
 
                         </Grid>
                         <Grid item xs={12} sm={6} md={3} className="textAlignCenter">
 
                             <div className="heightIconsFooter pt-4"><LocalShippingIcon className="iconsFooter"/></div>
-                            <div className="grey7 font6 size2 minHeight50Footer">FREE SHIPPING</div>
+                            <div className="grey7 font3 size2 minHeight50Footer">FREE SHIPPING</div>
                             <h5 className="font2">From 40$ of purchases</h5>
                         </Grid>
 
 
                         <Grid item xs={12} sm={6} md={3} className="textAlignCenter">
                             <div className="heightIconsFooter pt-4"><LiveHelpIcon className="iconsFooter" /></div>
-                            <div className="grey7 font6 size2 minHeight50Footer">RESPONSIVE CUSTOMER SERVICE</div>
+                            <div className="grey7 font3 size2 minHeight50Footer">RESPONSIVE CUSTOMER SERVICE</div>
                             <h5 className="font2">Guaranteed response within 24 hours</h5>
                         </Grid>
                     </Grid>
@@ -126,7 +126,7 @@ export default function Footer() {
                                                 onChange={(e) => setEmail(e.target.value)}
                                             />
                                             {/* <button className="buttonSendNewsletters font8 borderNone mt-2"><MailOutlineIcon className=""/></button> */}
-                                            <button onClick={addUserNewsletter} className="buttonSendNewsletters font2 mt-2 letterSpacing1 size2">OK </button>
+                                            <button onClick={addUserNewsletter} className="buttonSendNewsletters font2 mt-2 letterSpacing1 size2 opacity8">OK </button>
                                         </div>
                                     </div>
                                 </Grid>

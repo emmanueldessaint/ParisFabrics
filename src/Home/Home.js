@@ -12,6 +12,8 @@ import reward from "../assets/img/reward2.png";
 import earth from "../assets/img/earth1.png";
 import sewing from "../assets/img/sewing2.jpg";
 import review from "../assets/img/review3.png";
+import story from "../assets/img/story1.png"
+import aboutUsImg from '../assets/img/aboutusHome.png';
 import '../App.css';
 import '../css/Home.css';
 import { itemsProduct, itemsBestSellers, averageNoteArticles } from '../Shared/globalState';
@@ -19,6 +21,25 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import trackPackage from "../assets/img/trackPackage1.png";
 import { Helmet } from "react-helmet";
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+
+
+const LinkButton = withStyles((theme) => ({
+    root: {
+        color: '#020202',
+        backgroundColor: '#dbb013',
+        borderRadius: 4,
+        opacity: 0.9,
+        wordSpacing: 3,
+        letterSpacing: 1,
+        fontWeight: 800,
+        '&:hover': {
+            opacity: 1,
+            backgroundColor: '#dbb013',
+        },
+    },
+}))(Button);
 
 export default function Home() {
 
@@ -91,15 +112,14 @@ export default function Home() {
                 <img src={logo} alt="Logo" className="imgIntro" />
             </div>
             <Container >
-            <Helmet>
-                <meta charSet="utf-8" />
-                <title>Home - Paris Fabrics</title>
-            </Helmet>
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <title>Home - Paris Fabrics</title>
+                </Helmet>
                 <Grid container justifyContent="center" className="menuQuality">
                     <Grid item container xs={12} md={11}>
                         <Grid item xs={12} sm={4}>
                             <div className="mt-6 ">
-
                                 <span className="flexCenter minHeight40"><img src={earth} alt="earth_icon" className="smallIcons " /></span>
                                 <span className="flexCenter mt-2 titleHomeArguments grey7 font6 size1 opacity9 letterSpacing2">RESPECT FOR THE LAND</span>
                                 <div className="blueBar"></div>
@@ -170,7 +190,7 @@ export default function Home() {
                                                 />
                                             </div>
                                             <div className="flex">
-                                                {item.sales_price !== "0" && item.sales_price !== null &&<div className="priceProduct font2 letterSpacing2 mt-2 ml-3 pb-1 opacity9 textDecorationLineThrough grey6">${(item.sales_price / 100).toFixed(2)}</div>}
+                                                {item.sales_price !== "0" && item.sales_price !== null && <div className="priceProduct font2 letterSpacing2 mt-2 ml-3 pb-1 opacity9 textDecorationLineThrough grey6">${(item.sales_price / 100).toFixed(2)}</div>}
                                                 <div className="priceProduct font2 grey8 letterSpacing2 mt-2 ml-3 pb-1 opacity9">${(item.price / 100).toFixed(2)}</div>
                                             </div>
                                         </Link>
@@ -245,7 +265,33 @@ export default function Home() {
                         </Grid>
                     </Grid>
                 </Grid>
+                <div className="flexCenter mt-10"><img src={review} alt="reward_svg" className="reviewIcon opacity8" /></div>
+                <h2 className="centerText font8 size7 bold600 bestSellers opacity9 letterSpacing2">Our story ...</h2>
+                <Grid className="pt-7" container justifyContent="center">
+                    <Grid container item xs={11} md={11} spacing={4}>
+                        <Grid item md={6} xs={12} style={{ display: 'flex', alignItems: 'center' }}>
+                            <div>
+                                <h2 className="grey7 mt--5">... Started with you</h2>
+                                <div className="grey7 lineHeight4 textJustify">It is with you that we have started to grow. If we can still provide quality materials, it is thanks to you. For the past few months, we have constantly received suggestions to improve our store and design our next creation.
+                                </div>
+                                <div className="grey7 lineHeight4 mt-2">We thank you all!</div>
+                                <Grid container justifyContent="center">
+                                    <Grid xs={10} sm={6} md={6} className="pt-5 pb-5">
+                                        <Link to="/aboutus" className="textDecorationNone">
+                                            <LinkButton fullWidth variant="contained grey8">More about us</LinkButton>
+                                        </Link>
+                                    </Grid>
+
+                                </Grid>
+                            </div>
+                        </Grid>
+                        <Grid item md={6} xs={12}>
+                            <img src={aboutUsImg} className="imgHomeAboutUs" alt="Parisfabrics sewing article"></img>
+                        </Grid>
+
+                    </Grid>
+                </Grid>
             </Container>
-        </div>
+        </div >
     )
 }

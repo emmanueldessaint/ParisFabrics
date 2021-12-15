@@ -96,9 +96,9 @@ export default function Cart() {
     return (
       <Container>
         <Helmet>
-                <meta charSet="utf-8" />
-                <title>Your cart - Paris Fabrics</title>
-            </Helmet>
+          <meta charSet="utf-8" />
+          <title>Your cart - Paris Fabrics</title>
+        </Helmet>
         <Grid className="pt-12" container justifyContent="center">
           <Grid item xs={12} sm={11} md={11} >
             {/* <div className="flexCenter letterSpacing1 font5 grey7 mb-4 mt-2 size4">Here is your cart ...</div> */}
@@ -219,7 +219,7 @@ export default function Cart() {
                         <div className="alignRight font3">${(shippingFeesVar * 1).toFixed(2)}</div>
                       </div>
                       <div className="flexBetween totalAndShipping pb-1 mt-2 pt-2 pl-2 pr-2 bgBlue">
-                        <div className="totalPlusShipping font2 grey8">Total</div>
+                        <div className=" font2 grey8">Total</div>
                         <span className="greyLineCart"></span>
                         <div className="font3">${(Number(price / 100) + Number(shippingFeesVar)).toFixed(2)}</div>
                       </div>

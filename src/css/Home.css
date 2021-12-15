@@ -149,3 +149,23 @@
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
 }
+@media all and (max-width: 600px) {
+  .imgHomeAboutUs{
+    width:100%;
+  }
+}
+@media all and (max-width: 800px) {
+  .imgHomeAboutUs{
+    width:400px;
+  }
+}
+@media all and (max-width: 800px) {
+  .imgHomeAboutUs{
+    width:500px;
+  }
+}
+@media all and (max-width: 1200px) {
+  .imgHomeAboutUs{
+    width:600px;
+  }
+}

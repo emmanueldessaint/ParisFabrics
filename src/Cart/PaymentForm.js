@@ -68,6 +68,8 @@ export default function PaymentForm() {
   const [country, setCountry] = useState('');
   const [errorInCountry, setErrorInCountry] = useState(false);
   const [additionalInformation, setAdditionalInformation] = useState('');
+  const [nameOnCard, setNameOnCard] = useState('');
+  const [errorInNameOnCard, setErrorInNameOnCard] = useState(false);
   const [itemsInCart, setItemsInCart] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -276,9 +278,9 @@ export default function PaymentForm() {
   return (
     <Container>
       <Helmet>
-                <meta charSet="utf-8" />
-                <title>Checkout - Paris Fabrics</title>
-            </Helmet>
+        <meta charSet="utf-8" />
+        <title>Checkout - Paris Fabrics</title>
+      </Helmet>
       <Grid container justifyContent="center">
         <Grid container spacing={5} item xs={12} sm={12} md={12} lg={12}>
           {billingsDetails === false && cardInformation === false &&
@@ -307,7 +309,6 @@ export default function PaymentForm() {
               </Grid>
             </Grid>
           }
-
           {billingsDetails === true &&
             <Grid item xs={12} md={8}>
               <Grid spacing={2} container>
@@ -325,6 +326,7 @@ export default function PaymentForm() {
                     onChange={e => setFirstName(e.target.value)}
                     required
                     size="small"
+                    style={{backgroundColor:'rgb(216, 216, 216)'}}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -338,6 +340,7 @@ export default function PaymentForm() {
                     onChange={e => setLastName(e.target.value)}
                     required
                     size="small"
+                    style={{backgroundColor:'rgb(216, 216, 216)'}}
                   />
                 </Grid>
                 <Grid item xs={12} >
@@ -351,6 +354,7 @@ export default function PaymentForm() {
                     onChange={e => setEmail(e.target.value)}
                     required
                     size="small"
+                    style={{backgroundColor:'rgb(216, 216, 216)'}}
                   />
                 </Grid>
                 <Grid item xs={12} >
@@ -364,6 +368,7 @@ export default function PaymentForm() {
                     onChange={e => setCountry(e.target.value)}
                     required
                     size="small"
+                    style={{backgroundColor:'rgb(216, 216, 216)'}}
                   />
                 </Grid>
                 <Grid item xs={6} >
@@ -377,6 +382,7 @@ export default function PaymentForm() {
                     onChange={e => setCity(e.target.value)}
                     required
                     size="small"
+                    style={{backgroundColor:'rgb(216, 216, 216)'}}
                   />
                 </Grid>
                 <Grid item xs={6} >
@@ -390,6 +396,7 @@ export default function PaymentForm() {
                     onChange={e => setZipCode(e.target.value)}
                     required
                     size="small"
+                    style={{backgroundColor:'rgb(216, 216, 216)'}}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6} >
@@ -403,6 +410,7 @@ export default function PaymentForm() {
                     onChange={e => setAddress(e.target.value)}
                     required
                     size="small"
+                    style={{backgroundColor:'rgb(216, 216, 216)'}}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -413,12 +421,12 @@ export default function PaymentForm() {
                     value={additionalInformation}
                     onChange={e => setAdditionalInformation(e.target.value)}
                     size="small"
+                    style={{backgroundColor:'rgb(216, 216, 216)'}}
                   />
                 </Grid>
                 <Grid item xs={12} >
                   <div className="">
                     {/* <CardElement options={cardElementOptions} /> */}
-
                   </div>
                 </Grid>
                 <Grid xs={12} item>
@@ -432,13 +440,36 @@ export default function PaymentForm() {
             <Grid item xs={12} md={8}>
               <Grid spacing={2} container>
                 <Grid item xs={12} >
-                  <h2 className=" centerText grey6">Billing details</h2>
+                  <h2 className=" centerText grey6">Card information</h2>
                 </Grid>
-                <div className="numbersCard"><CardNumberElement /></div>
-                <CardExpiryElement />
-                <CardCvcElement />
                 <Grid item xs={12} >
-                  <ButtonBillingDetails fullWidth variant='contained' onClick={GoToPayment}>Go to payment</ButtonBillingDetails>
+                  <div className="cardInformationField"><CardNumberElement /></div>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <div className="cardInformationField"><CardExpiryElement /></div>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <div className="cardInformationField"><CardCvcElement /></div>
+                </Grid>
+                <Grid item xs={12} >
+                  <h2 className=" centerText grey6">Name on card</h2>
+                </Grid>
+                <Grid item xs={12} >
+                  <TextField
+                    variant="outlined"
+                    fullWidth
+                    label="Name on card"
+                    error={errorInNameOnCard}
+                    helperText={errorInNameOnCard ? "You must enter a name !" : ""}
+                    value={nameOnCard}
+                    onChange={e => setNameOnCard(e.target.value)}
+                    required
+                    size="small"
+                    style={{backgroundColor:'rgb(216, 216, 216)'}}
+                  />
+                </Grid>
+                <Grid item xs={12} >
+                  <ButtonBillingDetails fullWidth variant='contained' onClick={GoToPayment}>Pay ${(Number(price / 100) + Number(shippingFeesVar)).toFixed(2)}</ButtonBillingDetails>
                 </Grid>
               </Grid>
             </Grid>

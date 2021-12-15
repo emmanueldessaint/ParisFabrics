@@ -423,9 +423,9 @@ export default function Product(props) {
         return (
             <Container className="pt-15 singleProduct">
                 <Helmet>
-                <meta charSet="utf-8" />
-                <title>{product.name} - Paris Fabrics</title>
-            </Helmet>
+                    <meta charSet="utf-8" />
+                    <title>{product.name} - Paris Fabrics</title>
+                </Helmet>
                 <Grid container justifyContent="center" spacing={6}>
                     <Grid container item xs={12} sm={11} md={6} className="dispositionImageProduct">
 
@@ -592,32 +592,57 @@ export default function Product(props) {
                                     <div className="">
                                         <div>
                                             <div className="flex">
-                                                <div className="numberStars mr-1 bold800 width20 alignRight grey7"><StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px' }} />{numberOfStars.fiveStars}</div>
+                                                <div className="numberStars mr-1 bold800 width20 alignRight grey7">
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                </div>
                                                 <Line percent={(numberOfStars.fiveStars / numberOfStars.nbOfStars) * 100} strokeWidth="1" strokeColor="orange" trailColor="grey" className="progressBar" />
+                                                <div className="bold800 width20 ml-2 grey7">({numberOfStars.fiveStars})</div>
                                             </div>
                                         </div>
                                         <div>
                                             <div className="flex">
-                                                <div className="numberStars mr-1 bold800 width20 alignRight grey7"><StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px' }} />{numberOfStars.fourStars}</div>
+                                                <div className="numberStars mr-1 bold800 width20 alignRight grey7">
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                </div>
                                                 <Line percent={(numberOfStars.fourStars / numberOfStars.nbOfStars) * 100} strokeWidth="1" strokeColor="orange" trailColor="grey" className="progressBar" />
+                                                <div className="bold800 width20 ml-2 grey7">({numberOfStars.fourStars})</div>
                                             </div>
                                         </div>
                                         <div>
                                             <div className="flex">
-                                                <div className="numberStars mr-1 bold800 width20 alignRight grey7"><StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px' }} />{numberOfStars.threeStars}</div>
+                                                <div className="numberStars mr-1 bold800 width20 alignRight grey7">
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                </div>
                                                 <Line percent={(numberOfStars.threeStars / numberOfStars.nbOfStars) * 100} strokeWidth="1" strokeColor="orange" trailColor="grey" className="progressBar" />
+                                                <div className="bold800 width20 ml-2 grey7">({numberOfStars.threeStars})</div>
                                             </div>
                                         </div>
                                         <div>
                                             <div className="flex">
-                                                <div className="numberStars mr-1 bold800 width20 alignRight grey7"><StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px' }} />{numberOfStars.twoStars}</div>
+                                                <div className="numberStars mr-1 bold800 width20 alignRight grey7">
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                </div>
                                                 <Line percent={(numberOfStars.twoStars / numberOfStars.nbOfStars) * 100} strokeWidth="1" strokeColor="orange" trailColor="grey" className="progressBar" />
+                                                <div className="bold800 width20 ml-2 grey7">({numberOfStars.twoStars})</div>
                                             </div>
                                         </div>
                                         <div>
                                             <div className="flex">
-                                                <div className="numberStars mr-1 bold800 width20 alignRight grey7"><StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px' }} />{numberOfStars.oneStar}</div>
+                                                <div className="numberStars mr-1 bold800 width20 alignRight grey7">
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                </div>
                                                 <Line percent={(numberOfStars.oneStar / numberOfStars.nbOfStars) * 100} strokeWidth="1" strokeColor="orange" trailColor="grey" className="progressBar" />
+                                                <div className="bold800 width20 ml-2 grey7">({numberOfStars.oneStar})</div>
                                             </div>
                                         </div>
                                     </div>
@@ -815,32 +840,57 @@ export default function Product(props) {
                                     <div className="mt-4">
                                         <div>
                                             <div className="flex">
-                                                <div className="numberStars mr-1 bold800 width20 alignRight grey7"><StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px' }} />{numberOfStars.fiveStars}</div>
+                                                <div className="bold800 width20 mr-2 grey7">({numberOfStars.fiveStars})</div>
                                                 <Line percent={(numberOfStars.fiveStars / numberOfStars.nbOfStars) * 100} strokeWidth="1" strokeColor="orange" trailColor="grey" className="progressBar" />
+                                                <div className="numberStars mr-1 bold800 ml-2 alignRight grey7">
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                </div>
                                             </div>
                                         </div>
                                         <div>
                                             <div className="flex">
-                                                <div className="numberStars mr-1 bold800 width20 alignRight grey7"><StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px' }} />{numberOfStars.fourStars}</div>
+                                                <div className="bold800 width20 mr-2 grey7">({numberOfStars.fourStars})</div>
                                                 <Line percent={(numberOfStars.fourStars / numberOfStars.nbOfStars) * 100} strokeWidth="1" strokeColor="orange" trailColor="grey" className="progressBar" />
+                                                <div className="numberStars mr-1 bold800 ml-2 alignRight grey7">
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                </div>
                                             </div>
                                         </div>
                                         <div>
                                             <div className="flex">
-                                                <div className="numberStars mr-1 bold800 width20 alignRight grey7"><StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px' }} />{numberOfStars.threeStars}</div>
+                                                <div className="bold800 width20 mr-2 grey7">({numberOfStars.threeStars})</div>
                                                 <Line percent={(numberOfStars.threeStars / numberOfStars.nbOfStars) * 100} strokeWidth="1" strokeColor="orange" trailColor="grey" className="progressBar" />
+                                                <div className="numberStars mr-1 bold800 ml-2 alignRight grey7">
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                </div>
                                             </div>
                                         </div>
                                         <div>
                                             <div className="flex">
-                                                <div className="numberStars mr-1 bold800 width20 alignRight grey7"><StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px' }} />{numberOfStars.twoStars}</div>
+                                                <div className="bold800 width20 mr-2 grey7">({numberOfStars.twoStars})</div>
                                                 <Line percent={(numberOfStars.twoStars / numberOfStars.nbOfStars) * 100} strokeWidth="1" strokeColor="orange" trailColor="grey" className="progressBar" />
+                                                <div className="numberStars mr-1 bold800 ml-2 alignRight grey7">
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                </div>
                                             </div>
                                         </div>
                                         <div>
                                             <div className="flex">
-                                                <div className="numberStars mr-1 bold800 width20 alignRight grey7"><StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px' }} />{numberOfStars.oneStar}</div>
+                                                <div className="bold800 width20 mr-2 grey7">({numberOfStars.oneStar})</div>
                                                 <Line percent={(numberOfStars.oneStar / numberOfStars.nbOfStars) * 100} strokeWidth="1" strokeColor="orange" trailColor="grey" className="progressBar" />
+                                                <div className="numberStars mr-1 bold800 ml-2 alignRight grey7">
+                                                    <StarRateIcon style={{ fill: "orange", position: "relative", bottom: '2px', marginLeft: '-8px' }} />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
