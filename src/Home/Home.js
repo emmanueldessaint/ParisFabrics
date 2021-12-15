@@ -126,7 +126,6 @@ export default function Home() {
                                 <span className="flexCenter mt-1 grey7 font2 opacity9 letterSpacing1">Environment and traditions</span>
                             </div>
                         </Grid>
-
                         <Grid item xs={12} sm={4} className="flexBetween">
                             <div className="orangeBar"></div>
                             <div className="mt-6 ">
@@ -137,7 +136,6 @@ export default function Home() {
                             </div>
                             <div className="orangeBar"></div>
                         </Grid>
-
                         <Grid item xs={12} sm={4}>
                             <div className="mt-6">
                                 <span className="flexCenter minHeight40"><img src={sewing} alt="sewing_icon" className="smallIcons backgroundIcons" /></span>
@@ -148,15 +146,11 @@ export default function Home() {
                         </Grid>
                     </Grid>
                 </Grid>
-
                 <div className="mt-10 mb-5">
                     <div className="flexCenter"><img src={reward} alt="reward_svg" className="rewardIcon opacity8" /></div>
                     <span className="flexCenter font8 size7 mt-3 bold600 bestSellers opacity9 letterSpacing2">Our best sellers</span>
                     <span className="flexCenter font5 mt-1 bold400 bestSellers opacity9">Discover our customers' favorite products !</span>
                 </div>
-
-
-
                 {isLoaded &&
                     <div className="">
                         <Carousel
@@ -204,7 +198,7 @@ export default function Home() {
                 <h2 className="centerText font8 size7 bold600 bestSellers opacity9 letterSpacing2">They enjoyed the experience</h2>
                 <Grid className="pt-7" container justifyContent="center">
                     <Grid container item xs={11} md={11} spacing={4}>
-                        <Grid item md={3} xs={12} className=" bgBlue verticalAlign">
+                        <Grid item md={3} xs={12} className="bgBlue verticalAlign">
                             <Grid >
                                 <div className="textAlignCenter">
                                     <div><span className="size3 bold600 mr-1">{averageNotes}</span>/ 5</div>
@@ -228,7 +222,7 @@ export default function Home() {
                                 responsive={reviewsCarousel}
                                 infinite={true}
                                 autoPlay={true}
-                                autoPlaySpeed={10000}
+                                autoPlaySpeed={5000}
                                 removeArrowOnDeviceType={["tablet", "mobile"]}
                             >
                                 {userReviews.map((review, index) => (
@@ -236,7 +230,6 @@ export default function Home() {
                                         className="m-2 bgWhite lightShadowCard3 pt-2 cursorPointer"
                                         key={index}
                                     >
-
                                         {/* {item.product !== undefined && */}
                                         {/* <Link to={`/${item.product.name}`}> */}
                                         <Rating
@@ -281,14 +274,12 @@ export default function Home() {
                                             <LinkButton fullWidth variant="contained grey8">More about us</LinkButton>
                                         </Link>
                                     </Grid>
-
                                 </Grid>
                             </div>
                         </Grid>
                         <Grid item md={6} xs={12}>
                             <img src={aboutUsImg} className="imgHomeAboutUs" alt="Parisfabrics sewing article"></img>
                         </Grid>
-
                     </Grid>
                 </Grid>
             </Container>

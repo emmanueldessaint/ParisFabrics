@@ -149,23 +149,32 @@
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
 }
-@media all and (max-width: 600px) {
+@media all and (min-width: 000px) and (max-width: 600px) {
   .imgHomeAboutUs{
     width:100%;
+    margin-left:auto;
+    margin-right:auto;
   }
 }
-@media all and (max-width: 800px) {
+@media all and (min-width: 601px) and (max-width: 960px) {
+  .imgHomeAboutUs{
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 450px;
+  }
+}
+@media all and (min-width: 961px) and (max-width: 1200px) {
   .imgHomeAboutUs{
     width:400px;
+    margin-left:auto;
+    margin-right:auto;
   }
 }
-@media all and (max-width: 800px) {
+@media all and (min-width: 1201px) {
   .imgHomeAboutUs{
     width:500px;
-  }
-}
-@media all and (max-width: 1200px) {
-  .imgHomeAboutUs{
-    width:600px;
+    margin-left:auto;
+    margin-right:auto;
   }
 }

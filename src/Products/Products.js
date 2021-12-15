@@ -18,6 +18,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import { makeStyles } from '@material-ui/core/styles';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import { Helmet } from "react-helmet";
+import MenuItem from '@material-ui/core/MenuItem';
 
 // function Alert(props) {
 //     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -229,6 +230,19 @@ export default function Products() {
                                         <option className="optionSelect pl-1 pr-1 verticalItem" value={30}>Descending price order</option>
                                     </Select>
                                 </FormControl>
+                                {/* <FormControl variant="outlined" size="small" className="widthFormControl" >
+                                    <InputLabel htmlFor="age-native-simple">Filter by</InputLabel>
+                                    <Select
+                                        value={filter}
+                                        onChange={changeFilter}
+                                        fullWidth
+                                        label="Filter by"
+                                     >
+                                        <MenuItem value={10}>Popularity</MenuItem>
+                                        <MenuItem value={20}>Ascending price order</MenuItem>
+                                        <MenuItem value={30}>Descending price order</MenuItem>
+                                    </Select>
+                                </FormControl> */}
                             </div>
                             <div className="divMobile mr-4 mt-3 mb-1">
                                 <FormControl size="small" className="widthFormControl">
